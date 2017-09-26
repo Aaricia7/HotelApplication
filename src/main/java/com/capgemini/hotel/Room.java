@@ -6,14 +6,20 @@ public class Room {
     private String roomType;
     private int roomID;
     private String dateReady;
+    private boolean roomAvailable;
     // map<day,boolean,availabilty>
 
 
-    public Room(int roomID, int roomSize, String roomType, String dateReady) {
+    public Room(int roomID, int roomSize, String roomType, boolean roomAvailable, String dateReady) {
         this.roomSize = roomSize;
         this.roomType = roomType;
         this.roomID = roomID;
         this.dateReady = dateReady;
+        this.roomAvailable = roomAvailable;
+    }
+
+    public void setRoomAvailable(boolean roomAvailable) {
+        this.roomAvailable = roomAvailable;
     }
 
     public void setRoomSize(int roomSize) {
@@ -46,6 +52,10 @@ public class Room {
 
     public String getDateReady() {
         return dateReady;
+    }
+
+    public boolean isRoomAvailable() {
+        return roomAvailable;
     }
 
     @Override

@@ -7,7 +7,6 @@ public class Room {
     private int roomID;
     private String dateReady;
     private boolean roomAvailable;
-    // map<day,boolean,availabilty>
 
 
     public Room(int roomID, int roomSize, String roomType, boolean roomAvailable, String dateReady) {
@@ -60,7 +59,8 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room " + roomID + " - Roomtype: " + roomType + " - Roomsize: " + roomSize + " - Date ready: " + dateReady + "\n";
+        return "Room " + roomID + " - Roomtype: " + roomType + " - Roomsize: " + roomSize + " - Available : " +
+                roomAvailable + " - Date ready: " + dateReady + "\n";
 
     }
 }

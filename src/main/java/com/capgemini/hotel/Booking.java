@@ -2,32 +2,32 @@ package com.capgemini.hotel;
 
 public class Booking {
 
-    private int GuestID;
-    private int RoomID;
-    private int BookID;
+    private int guestID;
+    private int roomID;
+    private int bookID;
     private String startDate;
     private String stopDate;
     private boolean guestPaid = false;
 
     public Booking(int guestID, int roomID, int bookID, String startDate, String stopDate, boolean guestPaid) {
-        GuestID = guestID;
-        RoomID = roomID;
-        BookID = bookID;
+        this.guestID = guestID;
+        this.roomID = roomID;
+        this.bookID = bookID;
         this.startDate = startDate;
         this.stopDate = stopDate;
         this.guestPaid = guestPaid;
     }
 
     public void setGuestID(int guestID) {
-        GuestID = guestID;
+        guestID = guestID;
     }
 
     public void setRoomID(int roomID) {
-        RoomID = roomID;
+        roomID = roomID;
     }
 
     public void setBookID(int bookID) {
-        BookID = bookID;
+        bookID = bookID;
     }
 
     public void setStartDate(String startDate) {
@@ -43,15 +43,15 @@ public class Booking {
     }
 
     public int getGuestID() {
-        return GuestID;
+        return guestID;
     }
 
     public int getRoomID() {
-        return RoomID;
+        return roomID;
     }
 
     public int getBookID() {
-        return BookID;
+        return bookID;
     }
 
     public String getStartDate() {
@@ -65,5 +65,12 @@ public class Booking {
     public boolean isGuestPaid() {
         return guestPaid;
     }
+    @Override
+    public String toString()
+    {
+        return "Guest number: " + guestID + " - Room number: " + roomID + " - Booking number" + bookID +
+                " - From: " + startDate + " - To: " + stopDate;
+    }
+
 }
 

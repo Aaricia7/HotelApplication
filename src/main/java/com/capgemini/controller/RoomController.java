@@ -8,7 +8,7 @@ public class RoomController {
 
     @RequestMapping("/api/Room")
     public String home() {
-        Room room1 = new Room(1, 4, "Luxe", "now");
+        Room room1 = new Room(1, 4, "Luxe", true,"now");
         return room1.toString();
 
     }

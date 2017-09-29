@@ -89,4 +89,11 @@ public class Guest {
     public String getAllGuestDetails() {
         return "First name: " + guestFirstName + "\nLast name: " + guestLastName + "\netc";
     }
+
+    @Override
+    public String toString() {
+        return  "First name: " + guestFirstName + " - Last name: " + guestLastName + " - Adress: " + guestAdress + " - Zipcode: " +
+                guestZipcode + " - City: " + guestCity + " - Country: " + guestCountry + " - Phonenumber: " + guestPhonenumber +
+                " - Email: " + guestEmailAdress + "\n";
+    }
 }

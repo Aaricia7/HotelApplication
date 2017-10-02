@@ -10,8 +10,9 @@ public class Guest {
     private String guestCountry;
     private String guestPhonenumber;
     private String guestEmailAdress;
+    private long guestID;
 
-    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress) {
+    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress, long guestID ) {
         this.guestFirstName = guestFirstName;
         this.guestLastName = guestLastName;
         this.guestAdress = guestAdress;
@@ -20,6 +21,7 @@ public class Guest {
         this.guestCountry = guestCountry;
         this.guestPhonenumber = guestPhonenumber;
         this.guestEmailAdress = guestEmailAdress;
+        this.guestID = guestID;
     }
 
     public void setGuestFirstName(String guestFirstName) {
@@ -86,15 +88,22 @@ public class Guest {
         return guestEmailAdress;
     }
 
+    public long getGuestID() {
+        return guestID;
+    }
+
+    public void setGuestID(long guestID) {
+        this.guestID = guestID;
+    }
+
     public String getAllGuestDetails() {
         return "First name: " + guestFirstName + "\nLast name: " + guestLastName + "\netc";
     }
 
     @Override
-    public String toString()
-    {
-        return "First name: " + guestFirstName + " - Last name: " + guestLastName + " - Address: " + guestAdress +
-                " - Postcode: " + guestZipcode + " - City: " + guestCity + " - Country: " + guestCountry +
-                " - Phone number: " + guestPhonenumber + " - E-mail address: " + guestEmailAdress;
+    public String toString() {
+        return  "First name: " + guestFirstName + " - Last name: " + guestLastName + " - Adress: " + guestAdress + " - Zipcode: " +
+                guestZipcode + " - City: " + guestCity + " - Country: " + guestCountry + " - Phonenumber: " + guestPhonenumber +
+                " - Email: " + guestEmailAdress + "\n";
     }
 }

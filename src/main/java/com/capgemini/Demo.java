@@ -1,7 +1,6 @@
 package com.capgemini;
 
 import com.capgemini.hotel.*;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import java.util.ArrayList;
 
 public class Demo {

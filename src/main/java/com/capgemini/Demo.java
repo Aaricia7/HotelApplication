@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public class Demo {
 
-    static GuestRepository guestRepository= new GuestRepository();
+    static GuestRepository guestRepository = new GuestRepository();
+
     public static void main(String[] args) {
         Room room1 = new Room(1, 4, "Luxe", true, "now");
         Room room2 = new Room(2, 2, "Business", true, "now");
@@ -16,9 +17,15 @@ public class Demo {
         Room room5 = new Room(5, 2, "Business", false, "31-09-2017");
 
         Guest guest1 = new Guest("Tom", "Hanks", "West 12", "4567",
-                "New York", "United States", "555-1234", "tom@hanks.com");
-        Guest guest2 = new Guest("Brad", "Pit", "East 12", "8765",
-                "Los Angeles", "United States", "555-7890", "brad@pit.com");
+                "New York", "United States", "555-1234", "tom@hanks.com", 1);
+        Guest guest2 = new Guest("Tom", "Hanks", "West 12", "4567",
+                "New York", "United States", "555-1234", "tom@hanks.com", 2);
+        Guest guest3 = new Guest("Brad", "Pit", "East 12", "8765",
+                "Los Angeles", "United States", "555-7890", "brad@pit.com", 3);
+        guestRepository.add(guest1);
+        guestRepository.add(guest3);
+//        System.out.println(guestRepository.check(guest2));
+//        System.out.println(guestRepository.check(guest3));
 
         ArrayList<Room> roomList = new ArrayList<Room>();
         roomList.add(room1);
@@ -27,8 +34,7 @@ public class Demo {
         roomList.add(room4);
         roomList.add(room5);
 
-        guestRepository.add(guest1);
-        guestRepository.add(guest2);
+        //System.out.println(guestRepository.getGuestList(ArrayList(guest1)));
 
 //        StringBuilder roomListSB = new StringBuilder();
 //        for (Room value : roomList) {

@@ -2,14 +2,14 @@ package com.capgemini.hotel;
 
 public class Room {
 
-    private int roomSize;
-    private String roomType;
+    private ERoomSize roomSize;
+    private ERoomType roomType;
     private int roomID;
     private String dateReady;
     private boolean roomAvailable;
 
 
-    public Room(int roomID, int roomSize, String roomType, boolean roomAvailable, String dateReady) {
+    public Room(int roomID, ERoomSize roomSize, ERoomType roomType, boolean roomAvailable, String dateReady) {
         this.roomSize = roomSize;
         this.roomType = roomType;
         this.roomID = roomID;
@@ -21,11 +21,11 @@ public class Room {
         this.roomAvailable = roomAvailable;
     }
 
-    public void setRoomSize(int roomSize) {
+    public void setRoomSize(ERoomSize roomSize) {
         this.roomSize = roomSize;
     }
 
-    public void setRoomType(String roomType) {
+    public void setRoomType(ERoomType roomType) {
         this.roomType = roomType;
     }
 
@@ -37,11 +37,11 @@ public class Room {
         this.dateReady = dateReady;
     }
 
-    public int getRoomSize() {
+    public ERoomSize getRoomSize() {
         return roomSize;
     }
 
-    public String getRoomType() {
+    public ERoomType getRoomType() {
         return roomType;
     }
 

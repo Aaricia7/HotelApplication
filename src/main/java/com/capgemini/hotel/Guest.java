@@ -12,6 +12,8 @@ public class Guest {
     private String guestEmailAdress;
     private long guestID;
 
+    public Guest() {}
+
     public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress, long guestID ) {
         this.guestFirstName = guestFirstName;
         this.guestLastName = guestLastName;

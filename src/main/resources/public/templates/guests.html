@@ -14,7 +14,7 @@
         <h1>Gasten</h1>
     </div>
     <div class="col-md-10">
-        <button type="button" class="button">Gast toevoegen</button>
+        <p class="lead"><a href="" id="linkAddGuest">Gast toevoegen</a></p>
     </div>
 </div>
 <div class="row">
@@ -51,69 +51,69 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add Guest</h4>
+                <h4 class="modal-title">Gast toevoegen</h4>
             </div>
             <form>
                 <div class="modal-body">
                     <input type="hidden" id="id">
                     <div class="form-group row">
 
-                        <label for="firstName" class="col-sm-4 col-form-label">First Name:</label>
+                        <label for="firstName" class="col-sm-4 col-form-label">Voornaam:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="firstName" placeholder="Jeffrey">
+                            <input type="text" class="form-control" id="firstName" placeholder="Aaricia">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="lastName" class="col-sm-4 col-form-label">Lastname</label>
+                        <label for="lastName" class="col-sm-4 col-form-label">Achternaam:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="lastName" placeholder="van Laarhoven">
+                            <input type="text" class="form-control" id="lastName" placeholder="van Oostrom">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="phoneNumber" class="col-sm-4 col-form-label">Phone Number:</label>
+                        <label for="phoneNumber" class="col-sm-4 col-form-label">Telefoonnummer:</label>
                         <div class="col-sm-8">
-                            <input type="tel" class="form-control" id="phoneNumber" placeholder="06 0123456789">
+                            <input type="tel" class="form-control" id="phoneNumber" placeholder="0612345678">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="emailAddress" class="col-sm-4 col-form-label">e-Mail Address:</label>
+                        <label for="emailAddress" class="col-sm-4 col-form-label">E-mailadres:</label>
                         <div class="col-sm-8">
                             <input type="email" class="form-control" id="emailAddress" placeholder="email@example.com">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="address" class="col-sm-4 col-form-label">Address:</label>
+                        <label for="address" class="col-sm-4 col-form-label">Adres:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="address" placeholder="Dorp Straat 98">
+                            <input type="text" class="form-control" id="address" placeholder="Nieuwlandstraat 5">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="postalCode" class="col-sm-4 col-form-label">Postal Code:</label>
+                        <label for="zipCode" class="col-sm-4 col-form-label">Postcode:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="postalCode" placeholder="5222 AA">
+                            <input type="text" class="form-control" id="zipCode" placeholder="3131DA">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="city" class="col-sm-4 col-form-label">City:</label>
+                        <label for="city" class="col-sm-4 col-form-label">Plaats:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="city" placeholder="Utrecht">
+                            <input type="text" class="form-control" id="city" placeholder="Vlaardingen">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="country" class="col-sm-4 col-form-label">Country:</label>
+                        <label for="country" class="col-sm-4 col-form-label">Land:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="country" placeholder="Nederland">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="add-guest" class="btn btn-primary">Add</button>
-                    <button type="button" id="save-guest" class="btn btn-primary">Save</button>
+                    <button type="button" id="btnAddGuest" class="btn btn-primary">Voeg toe</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script scr="js/guests.js"></script>
+
+<script src="js/guests.js"></script>
 </body>
 </html>

@@ -17,8 +17,10 @@ public class Demo {
 
         Guest guest1 = new Guest("Tom", "Hanks", "West 12", "4567",
                 "New York", "United States", "555-1234", "tom@hanks.com", 1);
-        Guest guest2 = new Guest("Brad", "Pit", "East 12", "8765",
-                "Los Angeles", "United States", "555-7890", "brad@pit.com",2);
+        Guest guest2 = new Guest("Tom", "Hanks", "West 12", "4567",
+                "New York", "United States", "555-1234", "tom@hanks.com", 2);
+        Guest guest3 = new Guest("Brad", "Pit", "East 12", "8765",
+                "Los Angeles", "United States", "555-7890", "brad@pit.com", 3);
 
         Booking booking1 = new Booking(1,1, 111, "04-11-2017", "22-05-2018", true);
         Booking booking2 = new Booking(2,3, 112, "04-10-2017", "22-03-2018", true);
@@ -30,6 +32,11 @@ public class Demo {
         Booking booking8 = new Booking(2,2, 118, "04-11-2017", "22-02-2018", false);
         Booking booking9 = new Booking(1,1, 119, "04-10-2017", "22-01-2018", true);
 
+
+        guestRepository.add(guest1);
+        guestRepository.add(guest3);
+//        System.out.println(guestRepository.check(guest2));
+//        System.out.println(guestRepository.check(guest3));
 
         ArrayList<Room> roomList = new ArrayList<Room>();
         roomList.add(room1);

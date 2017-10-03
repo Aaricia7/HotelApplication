@@ -96,6 +96,14 @@ public class Guest {
         return guestEmailAdress;
     }
 
+    public long getGuestID() {
+        return guestID;
+    }
+
+    public void setGuestID(long guestID) {
+        this.guestID = guestID;
+    }
+
     public String getAllGuestDetails() {
         return "First name: " + guestFirstName + "\nLast name: " + guestLastName + "\netc";
     }

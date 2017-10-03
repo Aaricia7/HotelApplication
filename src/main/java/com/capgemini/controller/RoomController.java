@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class RoomController {
 
-    @RequestMapping("/api/Room")
-    public String home() {
+    @RequestMapping("/api/room")
+    public Room home() {
         Room room1 = new Room(1, 4, "Luxe", true,"now");
-        return room1.toString();
+        return room1;
 
     }
 }

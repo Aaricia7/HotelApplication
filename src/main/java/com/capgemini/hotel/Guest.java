@@ -10,6 +10,7 @@ public class Guest {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    private long guestID;
     private String guestFirstName;
     private String guestLastName;
     private String guestAdress;
@@ -18,7 +19,6 @@ public class Guest {
     private String guestCountry;
     private String guestPhonenumber;
     private String guestEmailAdress;
-    private long guestID;
 
     protected Guest() {}
 

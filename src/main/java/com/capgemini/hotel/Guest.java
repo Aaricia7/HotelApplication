@@ -10,9 +10,9 @@ public class Guest {
     private String guestCountry;
     private String guestPhonenumber;
     private String guestEmailAdress;
-    private long guestId;
+    private long guestID;
 
-    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress, long guestId) {
+    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress, long guestID) {
         this.guestFirstName = guestFirstName;
         this.guestLastName = guestLastName;
         this.guestAdress = guestAdress;
@@ -21,15 +21,15 @@ public class Guest {
         this.guestCountry = guestCountry;
         this.guestPhonenumber = guestPhonenumber;
         this.guestEmailAdress = guestEmailAdress;
-        this.guestId = guestId;
+        this.guestID = guestID;
     }
 
     public long getGuestId() {
-        return guestId;
+        return guestID;
     }
 
-    public void setGuestId(long guestId) {
-        this.guestId = guestId;
+    public void setGuestID(long guestID) {
+        this.guestID = guestID;
     }
 
     public void setGuestFirstName(String guestFirstName) {
@@ -98,10 +98,6 @@ public class Guest {
 
     public long getGuestID() {
         return guestID;
-    }
-
-    public void setGuestID(long guestID) {
-        this.guestID = guestID;
     }
 
     public String getAllGuestDetails() {

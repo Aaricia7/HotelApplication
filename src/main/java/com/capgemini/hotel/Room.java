@@ -11,9 +11,9 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long roomID;
     private ERoomSize roomSize;
     private ERoomType roomType;
-    private long roomID;
     private LocalDate dateReady;
     private boolean roomAvailable;
     private String roomNumber;

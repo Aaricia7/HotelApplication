@@ -16,7 +16,7 @@ $("#btnAddGuest").click(function() {
     obj.guestID = 1;
     console.log(obj);
     $.ajax({
-        url: "/api/guests/add",
+        url: "/api/guest/add",
         type: "POST",
         data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8",

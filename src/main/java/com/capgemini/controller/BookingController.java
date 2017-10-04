@@ -1,15 +1,19 @@
 package com.capgemini.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.capgemini.hotel.*;
 
 @RestController
+@RequestMapping(value="/API/bookings/")
 public class BookingController {
 
-    @RequestMapping("/api/booking")
-    public Booking home() {
-        Booking booking = new Booking(1, 1, 1, "26-09-2017", "30-09-2017",
-                false);
-        return booking;
+    @Autowired
+    BookingRepository bookingRepository;
+
+    @RequestMapping(value = "", method=RequestMethod.POST)
+    public void add(@RequestBody Booking booking) {
+        bookingRepository.save(booking);
+
     }
 }

@@ -2,18 +2,20 @@
 $("#post").click( function() {
     var json = {};
 
-    json.streetName = $("#street").val();
-    json.houseNumber = $("#housenumber").val();
-    json.city = $("#city").val();
-    json.companyName = $("#company").val();
+    json.guestID = $("#guestID").val();
+    json.roomID = $("#roomID").val();
+    json.bookID = $("#bookID").val();
+    json.startDate = $("#startDate").val();
+    json.stopDate = $("#stopDate").val();
+    json.guestPaid = $("#guestPaid").val();
 
     $.ajax({
         type: "POST",
-        url: "API/bookings",
+        url: "/API/bookings/",
         data: JSON.stringify(json),
         contentType: "application/json; charset=utf-8",
         success: function(result) {
-            $("#output").html(result.companyName + "," + " " + result.streetName + " " + result.houseNumber + ", " + "" + result.city );
+
         }
     })
 });

@@ -1,12 +1,7 @@
 package com.capgemini.hotel;
 
-public class BookingRepository {
+import org.springframework.data.repository.CrudRepository;
 
-    public void bookRoom() {
+public interface BookingRepository extends CrudRepository<Booking, Integer> {
 
-    }
-
-    public void deleteRoom() {
-
-    }
 }

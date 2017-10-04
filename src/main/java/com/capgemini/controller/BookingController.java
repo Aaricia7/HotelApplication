@@ -7,9 +7,6 @@ import com.capgemini.hotel.*;
 public class BookingController {
 
     @RequestMapping("/api/booking")
-    public Booking home() {
-        Booking booking = new Booking(1, 1, 1, "26-09-2017", "30-09-2017",
-                false);
-        return booking;
+    public void home() {
     }
 }

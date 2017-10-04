@@ -1,7 +1,15 @@
 package com.capgemini.hotel;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Guest {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private String guestFirstName;
     private String guestLastName;
     private String guestAdress;
@@ -10,9 +18,11 @@ public class Guest {
     private String guestCountry;
     private String guestPhonenumber;
     private String guestEmailAdress;
-    private long guestId;
+    private long guestID;
 
-    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress, long guestId) {
+    protected Guest() {}
+
+    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress) {
         this.guestFirstName = guestFirstName;
         this.guestLastName = guestLastName;
         this.guestAdress = guestAdress;
@@ -21,15 +31,6 @@ public class Guest {
         this.guestCountry = guestCountry;
         this.guestPhonenumber = guestPhonenumber;
         this.guestEmailAdress = guestEmailAdress;
-        this.guestId = guestId;
-    }
-
-    public long getGuestId() {
-        return guestId;
-    }
-
-    public void setGuestId(long guestId) {
-        this.guestId = guestId;
     }
 
     public void setGuestFirstName(String guestFirstName) {

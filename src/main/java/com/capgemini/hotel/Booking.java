@@ -1,18 +1,30 @@
 package com.capgemini.hotel;
 
+import javafx.util.converter.LocalDateStringConverter;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDate;
+
+@Entity
 public class Booking {
 
-    private int guestID;
-    private int roomID;
-    private int bookID;
-    private String startDate;
-    private String stopDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long guestID;
+    private long roomID;
+    private long bookID;
+    private LocalDate startDate;
+    private LocalDate stopDate;
     private boolean guestPaid = false;
 
-    public Booking(int guestID, int roomID, int bookID, String startDate, String stopDate, boolean guestPaid) {
+    protected Booking() {}
+
+    public Booking(int guestID, int roomID, LocalDate startDate, LocalDate stopDate, boolean guestPaid) {
         this.guestID = guestID;
         this.roomID = roomID;
-        this.bookID = bookID;
         this.startDate = startDate;
         this.stopDate = stopDate;
         this.guestPaid = guestPaid;
@@ -30,11 +42,11 @@ public class Booking {
         bookID = bookID;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setStopDate(String stopDate) {
+    public void setStopDate(LocalDate stopDate) {
         this.stopDate = stopDate;
     }
 
@@ -42,23 +54,23 @@ public class Booking {
         this.guestPaid = guestPaid;
     }
 
-    public int getGuestID() {
+    public long getGuestID() {
         return guestID;
     }
 
-    public int getRoomID() {
+    public long getRoomID() {
         return roomID;
     }
 
-    public int getBookID() {
+    public long getBookID() {
         return bookID;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public String getStopDate() {
+    public LocalDate getStopDate() {
         return stopDate;
     }
 

@@ -1,60 +1,79 @@
 package com.capgemini.hotel;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDate;
+
+@Entity
 public class Room {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private ERoomSize roomSize;
     private ERoomType roomType;
-    private int roomID;
-    private String dateReady;
+    private long roomID;
+    private LocalDate dateReady;
     private boolean roomAvailable;
+    private String roomNumber;
 
+    protected Room() {}
 
-    public Room(int roomID, ERoomSize roomSize, ERoomType roomType, boolean roomAvailable, String dateReady) {
+    public Room( ERoomSize roomSize, ERoomType roomType, boolean roomAvailable, LocalDate dateReady, String roomNumber) {
         this.roomSize = roomSize;
         this.roomType = roomType;
-        this.roomID = roomID;
         this.dateReady = dateReady;
         this.roomAvailable = roomAvailable;
-    }
-
-    public void setRoomAvailable(boolean roomAvailable) {
-        this.roomAvailable = roomAvailable;
-    }
-
-    public void setRoomSize(ERoomSize roomSize) {
-        this.roomSize = roomSize;
-    }
-
-    public void setRoomType(ERoomType roomType) {
-        this.roomType = roomType;
-    }
-
-    public void setRoomID(int roomID) {
-        this.roomID = roomID;
-    }
-
-    public void setDateReady(String dateReady) {
-        this.dateReady = dateReady;
+        this.roomNumber = roomNumber;
     }
 
     public ERoomSize getRoomSize() {
         return roomSize;
     }
 
+    public void setRoomSize(ERoomSize roomSize) {
+        this.roomSize = roomSize;
+    }
+
     public ERoomType getRoomType() {
         return roomType;
     }
 
-    public int getRoomID() {
+    public void setRoomType(ERoomType roomType) {
+        this.roomType = roomType;
+    }
+
+    public long getRoomID() {
         return roomID;
     }
 
-    public String getDateReady() {
+    public void setRoomID(long roomID) {
+        this.roomID = roomID;
+    }
+
+    public LocalDate getDateReady() {
         return dateReady;
+    }
+
+    public void setDateReady(LocalDate dateReady) {
+        this.dateReady = dateReady;
     }
 
     public boolean isRoomAvailable() {
         return roomAvailable;
+    }
+
+    public void setRoomAvailable(boolean roomAvailable) {
+        this.roomAvailable = roomAvailable;
+    }
+
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     @Override

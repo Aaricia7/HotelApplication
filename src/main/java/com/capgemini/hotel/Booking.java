@@ -26,6 +26,7 @@ public class Booking {
 
     @ManyToOne
     private Room room;
+    @ManyToOne
     private Guest guest;
     private LocalDate startDate;
     private LocalDate stopDate;

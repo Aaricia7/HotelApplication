@@ -18,8 +18,6 @@ import java.time.LocalDate;
 public class App
 {
 
-    private static final Logger log = LoggerFactory.getLogger(App.class);
-
     public static void main(String[] args)  {
         SpringApplication.run(App.class, args);
     }
@@ -29,12 +27,6 @@ public class App
         return(args) -> {
             repository.save(new Guest("Aaricia", "van Oostrom", "Lijsterlaan 1", "3135KL",
                     "Vlaardingen", "Nederland", "0621895051", "aariciavo@gmail.com"));
-            log.info("Customers found with findAll():");
-            log.info("-------------------------------");
-            for (Guest guest : repository.findAll()) {
-                log.info(guest.toString());
-            }
-            log.info("");
         };
     }
 

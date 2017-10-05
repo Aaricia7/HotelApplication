@@ -34,7 +34,7 @@ public class App
 //        };
 //    }
 
-    @Autowired
+    @Bean
     public CommandLineRunner demo1(RoomRepository repository) {
         return(args) -> {
             repository.save(new Room(ERoomSize.TWEEPERSOONS,ERoomType.BUDGET,true, null, "100"));

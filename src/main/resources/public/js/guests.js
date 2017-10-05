@@ -36,6 +36,7 @@ $("#btnAddGuest").click(function (e) {
         contentType: "application/json; charset=utf-8"
     }).done(function () {
         $("#guestModal").modal("toggle");
+        $("#guestModal input").val("");
         getAll();
     });
 });
@@ -50,6 +51,7 @@ $("#btnUpdateGuest").click( function (e) {
         contentType: "application/json; charset=utf-8"
         }).done(function () {
         $("#guestModal").modal("toggle");
+        $("#guestModal input").val("");
         getAll();
     })
 })

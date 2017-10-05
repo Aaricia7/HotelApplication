@@ -36,12 +36,12 @@ public class App
 //        };
 //    }
 
-    @Bean
-    public CommandLineRunner demo1(RoomRepository repository) {
-        return(args) -> {
-            repository.save(new Room(ERoomSize.TWEEPERSOONS,ERoomType.BUDGET,true, null, "100"));
-        };
-    }
+//    @Bean
+//    public CommandLineRunner demo1(RoomRepository repository) {
+//        return(args) -> {
+//            repository.save(new Room(ERoomSize.TWEEPERSOONS,ERoomType.BUDGET,true, null, "100"));
+//        };
+//    }
 
 
 //    @Bean
@@ -51,12 +51,12 @@ public class App
 //        };
 //    }
 //
-//    @Bean
-//    public CommandLineRunner demo3(BookingRepository repository) {
-//        return(args) -> {
-//            repository.save(new Booking(1, 1, LocalDate.now(), LocalDate.now(), false));
-//        };
-//    }
+    @Bean
+    public CommandLineRunner demo3(BookingRepository repository) {
+        return(args) -> {
+            repository.save(new Booking("Aaricia", "van Oostrom", LocalDate.now(), LocalDate.now(), false));
+        };
+}
 
 
 

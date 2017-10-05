@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.capgemini.hotel.*;
 
 @RestController
-@RequestMapping("api/bookings/")
+@RequestMapping("/api/bookings/")
 public class BookingController {
 
     @Autowired

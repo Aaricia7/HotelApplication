@@ -28,31 +28,58 @@ $("#btnClose").click(function() {
 });
 
 
-$("#btnAddRoom").click(function() {
-    console.log("test");
+$("#btnAddRoom").click( function (e) {
+    e.preventDefault();
+    var obj = getObject();
+    $.ajax({
+        url: "/api/rooms/",
+        method:"PUT",
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8"
+        }).done(function () {
+        $("#roomModal").modal("toggle");
+        getAll();
+    })
+})
+
+$("#btnUpdateRoom").click( function (e) {
+    e.preventDefault();
+    var obj = getObject();
+    $.ajax({
+        url: "/api/rooms/",
+        method:"PUT",
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8"
+        }).done(function () {
+        $("#roomModal").modal("toggle");
+        getAll();
+    })
+})
+
+function del(id) {
+    $.ajax({url: "/api/rooms/"+id+"/", type: "DELETE"}).done( function() {
+    getAll();
+    })
+}
+
+function edit(id) {
+    $.get({url:"/api/rooms/"+id+"/", type:"GET"}).done( function(result) {
+        $("#id").val(result.guestID);
+        $("#roomSize").val(result.roomSize);
+        $("#roomType").val(result.roomType);
+        $("#dateReady").val(result.dateReady);
+        $("#roomAvailable").val(result.roomAvailable);
+        $("#roomNumber").val(result.roomNumber);
+    })
+}
+
+function getObject() {
     var obj = {};
-    obj.roomID = $("#id").val();
     obj.roomSize = $("#roomSize").val();
     obj.roomType =  $("#roomType").val();
     obj.dateReady = $("#dateReady").val();
     obj.roomAvailable = $("#roomAvailable").val();
     obj.roomNumber = $("#roomNumber").val();
-
-    console.log(obj);
-
-    $.ajax({
-        url: "/api/rooms/",
-        type: "POST",
-        data: JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8",
-        success: function(result) {
-            console.log(result);
-            return result;
-        },
-        error: function(err) {
-            console.log(err.responseText);
-        }
-    });
-    $("#roomModal").modal("hide");
-});
+    return obj;
+}
 

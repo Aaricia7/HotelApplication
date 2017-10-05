@@ -7,10 +7,6 @@ $("#linkAddRoom").click(function (e) {
 
 getAll();
 
-$("#btnClose").click(function() {
- $("#roomModal").modal("hide");
-});
-
 function getAll() {
     $.get("/api/rooms/", function (result) {
         console.log(result);
@@ -19,13 +15,18 @@ function getAll() {
             table.row.add(["<a href=\"javascript:del(" + result[i].roomID + ")\"><i class='fa fa-trash-o' aria-hidden='true'></i></a>",
                             "<a href=\"javascript:edit("+result[i].roomID+")\">"+result[i].roomID+"</a>",
                             result[i].roomSize,
-                            result[i].roomSize,
-                            result[i].dateReady,
+                            result[i].roomType,
                             result[i].roomNumber,
+                            result[i].dateReady]);
         }
         table.draw();
     });
 }
+
+$("#btnClose").click(function() {
+ $("#roomModal").modal("hide");
+});
+
 
 $("#btnAddRoom").click(function() {
     console.log("test");

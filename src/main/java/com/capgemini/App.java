@@ -40,12 +40,6 @@ public class App
     public CommandLineRunner demo1(RoomRepository repository) {
         return(args) -> {
             repository.save(new Room(ERoomSize.TWEEPERSOONS,ERoomType.BUDGET,true, null, "100"));
-            log.info("Customers found with findAll():");
-            log.info("-------------------------------");
-            for (Room room : repository.findAll()) {
-                log.info(room.toString());
-            }
-            log.info("");
         };
     }
 

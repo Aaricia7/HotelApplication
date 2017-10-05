@@ -14,14 +14,28 @@ public class RoomController {
     @Autowired
     RoomRepository roomRepository;
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public void add(@RequestBody Room room) {
-        roomRepository.save(room);
-        System.out.println(room);
-    }
-
     @RequestMapping(value="",method = RequestMethod.GET)
     public Iterable<Room> getAll() {
         return roomRepository.findAll();
+    }
+
+    @RequestMapping(value="", method=RequestMethod.POST)
+    public void add(@RequestBody Room room) {
+        roomRepository.save(room);
+    }
+
+    @RequestMapping(value="{id}/", method= RequestMethod.DELETE)
+    public void del(@PathVariable long id) {
+        roomRepository.delete(id);
+    }
+
+    @RequestMapping(value="{id}/", method= RequestMethod.GET)
+    public Room get(@PathVariable long id) {
+        return roomRepository.findOne(id);
+    }
+
+    @RequestMapping(value="", method=RequestMethod.PUT)
+    public void save(@RequestBody Room room) {
+        roomRepository.save(room);
     }
 }

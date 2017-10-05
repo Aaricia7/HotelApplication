@@ -1,7 +1,16 @@
 package com.capgemini.hotel;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Guest {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long guestID;
     private String guestFirstName;
     private String guestLastName;
     private String guestAdress;
@@ -10,9 +19,10 @@ public class Guest {
     private String guestCountry;
     private String guestPhonenumber;
     private String guestEmailAdress;
-    private long guestID;
 
-    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress, long guestID) {
+    protected Guest() {}
+
+    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress) {
         this.guestFirstName = guestFirstName;
         this.guestLastName = guestLastName;
         this.guestAdress = guestAdress;
@@ -21,15 +31,6 @@ public class Guest {
         this.guestCountry = guestCountry;
         this.guestPhonenumber = guestPhonenumber;
         this.guestEmailAdress = guestEmailAdress;
-        this.guestID = guestID;
-    }
-
-    public long getGuestId() {
-        return guestID;
-    }
-
-    public void setGuestID(long guestID) {
-        this.guestID = guestID;
     }
 
     public void setGuestFirstName(String guestFirstName) {
@@ -98,6 +99,10 @@ public class Guest {
 
     public long getGuestID() {
         return guestID;
+    }
+
+    public void setGuestID(long guestID) {
+        this.guestID = guestID;
     }
 
     public String getAllGuestDetails() {

@@ -7,13 +7,12 @@ import com.capgemini.hotel.*;
 @RestController
 @RequestMapping(value="/API/bookings/")
 public class BookingController {
-
     @Autowired
     BookingRepository bookingRepository;
 
-    @RequestMapping(value = "", method=RequestMethod.POST)
+    @RequestMapping(value= "/api/booking", method=RequestMethod.POST)
     public void add(@RequestBody Booking booking) {
-        bookingRepository.save(booking);
 
+        bookingRepository.save(booking);
     }
 }

@@ -1,7 +1,11 @@
 package com.capgemini.hotel;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 import javafx.util.converter.LocalDateStringConverter;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,76 +17,59 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long guestID;
-    private long roomID;
-    private long bookID;
-    private LocalDate startDate;
-    private LocalDate stopDate;
+    private int bookID;
     private boolean guestPaid = false;
 
-    protected Booking() {}
+    @ManyToOne
+    private Room room;
+    private Guest guest;
+    private LocalDate startDate;
+    private LocalDate stopDate;
 
-    public Booking(int guestID, int roomID, LocalDate startDate, LocalDate stopDate, boolean guestPaid) {
-        this.guestID = guestID;
-        this.roomID = roomID;
-        this.startDate = startDate;
-        this.stopDate = stopDate;
+    public Booking(boolean guestPaid, int bookID, Room room, Guest guest, LocalDate startDate, LocalDate stopDate) {
         this.guestPaid = guestPaid;
-    }
+        this.bookID = bookID;
+        this.room = room;
+        this.guest = guest;
+}
 
-    public void setGuestID(int guestID) {
-        guestID = guestID;
-    }
-
-    public void setRoomID(int roomID) {
-        roomID = roomID;
-    }
-
-    public void setBookID(int bookID) {
-        bookID = bookID;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setStopDate(LocalDate stopDate) {
-        this.stopDate = stopDate;
-    }
-
-    public void setGuestPaid(boolean guestPaid) {
-        this.guestPaid = guestPaid;
-    }
-
-    public long getGuestID() {
-        return guestID;
-    }
-
-    public long getRoomID() {
-        return roomID;
-    }
-
-    public long getBookID() {
+    public int getBookID() {
         return bookID;
     }
-
-    public LocalDate getStartDate() {
-        return startDate;
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
-
-    public LocalDate getStopDate() {
-        return stopDate;
-    }
-
     public boolean isGuestPaid() {
         return guestPaid;
     }
-    @Override
-    public String toString()
-    {
-        return "Guest number: " + guestID + " - Room number: " + roomID + " - Booking number" + bookID +
-                " - From: " + startDate + " - To: " + stopDate;
+    public void setGuestPaid(boolean guestPaid) {
+        this.guestPaid = guestPaid;
     }
+    public Room getRoom() {
+        return room;
+    }
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+    public Guest getGuest() {
+        return guest;
+    }
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+    public LocalDate getStopDate() {
+        return stopDate;
+    }
+    public void setStopDate(LocalDate stopDate) {
+        this.stopDate = stopDate;
+    }}
 
-}
+
+
 

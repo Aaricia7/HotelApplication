@@ -40,6 +40,20 @@ $("#btnAddGuest").click(function (e) {
     });
 });
 
+$("#btnUpdateGuest").click( function (e) {
+    e.preventDefault();
+    var obj = getObject();
+    $.ajax({
+        url: "/api/guests/",
+        method:"PUT",
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8"
+        }).done(function () {
+        $("#guestModal").modal("toggle");
+        getAll();
+    })
+})
+
 function del(id) {
     $.ajax({url: "/api/guests/"+id+"/", type: "DELETE"}).done( function() {
     getAll();
@@ -48,7 +62,7 @@ function del(id) {
 
 function edit(id) {
     $.get({url:"/api/guests/"+id+"/", type:"GET"}).done( function(result) {
-        $("#id").val(result.id);
+        $("#id").val(result.guestID);
         $("#firstName").val(result.guestFirstName);
         $("#lastName").val(result.guestLastName);
         $("#phoneNumber").val(result.guestPhonenumber);

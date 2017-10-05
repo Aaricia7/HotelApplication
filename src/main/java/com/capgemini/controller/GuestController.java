@@ -34,4 +34,9 @@ public class GuestController {
         return guestRepository.findOne(id);
     }
 
+    @RequestMapping(value="", method=RequestMethod.PUT)
+    public void save(@RequestBody Guest guest) {
+        guestRepository.save(guest);
+    }
+
 }

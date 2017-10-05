@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.capgemini.hotel.*;
 
 @RestController
-@RequestMapping("api/bookings")
+@RequestMapping("api/bookings/")
 public class BookingController {
 
     @Autowired
@@ -20,6 +20,12 @@ public class BookingController {
     @Autowired
     RoomRepository roomRepository;
 
+    @RequestMapping(value= "", method=RequestMethod.POST)
+    public void add(@RequestBody Booking booking) {
+
+        bookingRepository.save(booking);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<Booking> GetAll() {
         return bookingRepository.findAll();
@@ -28,12 +34,6 @@ public class BookingController {
     @RequestMapping(value = "{id}/" , method = RequestMethod.GET)
     public Booking get (@PathVariable long id) {
        return bookingRepository.findOne(id);}
-
-
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public void add(@RequestBody Booking booking) {
-        bookingRepository.save(booking);
-    }
 
     @RequestMapping(value= "{id}/" , method= RequestMethod.DELETE)
     public void del (@PathVariable long id) {

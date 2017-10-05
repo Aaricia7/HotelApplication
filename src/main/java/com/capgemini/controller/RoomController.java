@@ -18,6 +18,10 @@ public class RoomController {
     public void add(@RequestBody Room room) {
         roomRepository.save(room);
         System.out.println(room);
+    }
 
+    @RequestMapping(value="",method = RequestMethod.GET)
+    public Iterable<Room> getAll() {
+        return roomRepository.findAll();
     }
 }

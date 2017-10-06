@@ -50,15 +50,15 @@ public class App
 //            repository.save(new Room(ERoomSize.EENPERSOONS, ERoomType.BUDGET, true, LocalDate.now(), "201"));
 //        };
 //    }
-//
-    @Bean
-    public CommandLineRunner demo3(BookingRepository repository) {
-        return(args) -> {
-            repository.save(new Booking("Aaricia", "van Oostrom", LocalDate.now(), LocalDate.now(), false));
-        };
+////
+//    @Bean
+//    public CommandLineRunner demo3(BookingRepository repository) {
+//        return(args) -> {
+//            repository.save(new Booking("Aaricia", "van Oostrom", "101", LocalDate.now(), LocalDate.now(), false));
+//        };
 }
 
 
 
 
-}
+

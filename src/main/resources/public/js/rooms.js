@@ -3,6 +3,8 @@ var table = $("#table").DataTable();
 $("#linkAddRoom").click(function (e) {
     e.preventDefault();
     $("#roomModal").modal("toggle");
+    $("#btnUpdateRoom").hide();
+    $("#btnAddRoom").show();
 });
 
 getAll();

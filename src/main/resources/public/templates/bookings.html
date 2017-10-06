@@ -1,9 +1,3 @@
-<html>
-<head>
-    <title>Home page</title>
-    <link href="css/guests.css" rel="stylesheet">
-</head>
-<body>
 <div class="row">
     <div class="col-md-12">
         <br/><br/>
@@ -14,7 +8,7 @@
         <h1>Boekingen</h1>
     </div>
     <div class="col-md-10">
-        <p class="align-right"><a href="" id="linkAddBooking">Boeking toevoegen</a></p>
+        <div class=text-right><p class="lead"><a href="" id="linkAddBooking"><font color="#ff3385"><b>Boeking toevoegen</b></font></a></p></div>
     </div>
 </div>
 <div class="row">
@@ -27,9 +21,10 @@
         <thead>
         <tr>
             <th></th>
-            <th>Boeking ID</th>
+            <th>ID</th>
             <th>Voornaam</th>
             <th>Achternaam</th>
+            <th>Kamernummer</th>
             <th>Van</th>
             <th>Tot</th>
             <th>Betaald</th>
@@ -40,20 +35,18 @@
     </table>
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="bookingModal" role="dialog">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Gast toevoegen</h4>
+                <h4 class="modal-title">Boeking toevoegen</h4>
             </div>
             <form>
                 <div class="modal-body">
                     <input type="hidden" id="id">
                     <div class="form-group row">
-
                         <label for="firstName" class="col-sm-4 col-form-label">Voornaam:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="firstName" placeholder="Aaricia">
@@ -63,6 +56,12 @@
                         <label for="lastName" class="col-sm-4 col-form-label">Achternaam:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="lastName" placeholder="van Oostrom">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="roomNumber" class="col-sm-4 col-form-label">Kamernummer:</label>
+                        <div class="col-sm-8">
+                            <input type="tel" class="form-control" id="roomNumber" placeholder="101">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -89,6 +88,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type='button' id='btnAddBooking' class='btn btn-primary'>Voeg toe</button>
+                    <button type='button' id='btnUpdateBooking' class='btn btn-primary'>Pas aan</button>
                 </div>
             </form>
         </div>
@@ -96,5 +96,3 @@
 </div>
 
 <script src="js/bookings.js"></script>
-</body>
-</html>

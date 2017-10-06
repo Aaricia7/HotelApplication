@@ -5,23 +5,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
-
-import javafx.util.converter.LocalDateStringConverter;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int bookID;
+    private long bookID;
     private String firstName;
     private String lastName;
+    private String roomNumber;
 
     @ManyToOne
     private Room room;
@@ -33,19 +27,28 @@ public class Booking {
 
     protected Booking() {}
 
-    public Booking(String firstName, String lastName, LocalDate startDate, LocalDate stopDate, boolean guestPaid) {
+    public Booking(String firstName, String lastName, String roomNumber, LocalDate startDate, LocalDate stopDate, boolean guestPaid) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.roomNumber = roomNumber;
         this.startDate = startDate;
         this.stopDate = stopDate;
         this.guestPaid = guestPaid;
     }
 
-    public int getBookID() {
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public long getBookID() {
         return bookID;
     }
 
-    public void setBookID(int bookID) {
+    public void setBookID(long bookID) {
         this.bookID = bookID;
     }
 

@@ -19,7 +19,7 @@ function getAll() {
                             result[i].roomSize,
                             result[i].roomType,
                             result[i].roomNumber,
-                            result[i].dateReady]);
+                            (result[i].dateReady[2]+"/"+result[i].dateReady[1]+"/"+result[i].dateReady[0])]);
         }
         table.draw();
     });
@@ -40,6 +40,7 @@ $("#btnAddRoom").click( function (e) {
         contentType: "application/json; charset=utf-8"
         }).done(function () {
         $("#roomModal").modal("toggle");
+        $("#roomModal input").val("");
         getAll();
     })
 })
@@ -54,6 +55,7 @@ $("#btnUpdateRoom").click( function (e) {
         contentType: "application/json; charset=utf-8"
         }).done(function () {
         $("#roomModal").modal("toggle");
+        $("#roomModal input").val("");
         getAll();
     })
 })
@@ -66,11 +68,10 @@ function del(id) {
 
 function edit(id) {
     $.get({url:"/api/rooms/"+id+"/", type:"GET"}).done( function(result) {
-        $("#id").val(result.guestID);
+        $("#id").val(result.roomID);
         $("#roomSize").val(result.roomSize);
         $("#roomType").val(result.roomType);
         $("#dateReady").val(result.dateReady);
-        $("#roomAvailable").val(result.roomAvailable);
         $("#roomNumber").val(result.roomNumber);
     })
 }

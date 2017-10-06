@@ -13,14 +13,13 @@ function getAll() {
     $.get("/api/bookings/", function (result) {
         table.clear();
         for (var i = 0; i < result.length; i++) {
-            console.log(result[i].startDate[0]);
             table.row.add(["<a href=\"javascript:del(" + result[i].bookID + ")\"><i class='fa fa-trash-o' aria-hidden='true'></i></a>",
                             "<a href=\"javascript:edit("+result[i].bookID+")\">"+result[i].bookID+"</a>",
                             result[i].firstName,
                             result[i].lastName,
                             result[i].roomNumber,
-                            result[i].startDate,
-                            result[i].stopDate,
+                            (result[i].startDate[2]+"/"+result[i].startDate[1]+"/"+result[i].startDate[0]),
+                            (result[i].stopDate[2]+"/"+result[i].stopDate[1]+"/"+result[i].stopDate[0]),
                             result[i].guestPaid]);
         }
         table.draw();
@@ -64,6 +63,7 @@ function edit(id) {
     $("#btnUpdateBooking").show();
     $.get({url:"/api/bookings/"+id+"/", type:"GET"}).done( function(result) {
         var paid = result.guestPaid;
+        var start = result.startDate[2] + "/" + result.startDate[1] + "/" + result.startDate[0];
         $("#id").val(result.bookID);
         $("#firstName").val(result.firstName);
         $("#lastName").val(result.lastName);

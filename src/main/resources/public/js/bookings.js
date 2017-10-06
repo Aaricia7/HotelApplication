@@ -13,6 +13,7 @@ function getAll() {
     $.get("/api/bookings/", function (result) {
         table.clear();
         for (var i = 0; i < result.length; i++) {
+            console.log(result[i].startDate[0]);
             table.row.add(["<a href=\"javascript:del(" + result[i].bookID + ")\"><i class='fa fa-trash-o' aria-hidden='true'></i></a>",
                             "<a href=\"javascript:edit("+result[i].bookID+")\">"+result[i].bookID+"</a>",
                             result[i].firstName,

@@ -3,6 +3,8 @@ var table = $("#table").DataTable();
 $("#linkAddGuest").click(function (e) {
     e.preventDefault();
     $("#guestModal").modal("toggle");
+    $("#btnUpdateGuest").hide();
+    $("#btnAddGuest").show();
 });
 
 getAll();
@@ -36,6 +38,7 @@ $("#btnAddGuest").click(function (e) {
         contentType: "application/json; charset=utf-8"
     }).done(function () {
         $("#guestModal").modal("toggle");
+        $("#guestModal input").val("");
         getAll();
     });
 });
@@ -50,6 +53,7 @@ $("#btnUpdateGuest").click( function (e) {
         contentType: "application/json; charset=utf-8"
         }).done(function () {
         $("#guestModal").modal("toggle");
+        $("#guestModal input").val("");
         getAll();
     })
 })
@@ -61,6 +65,8 @@ function del(id) {
 }
 
 function edit(id) {
+    $("#btnAddGuest").hide();
+    $("#btnUpdateGuest").show();
     $.get({url:"/api/guests/"+id+"/", type:"GET"}).done( function(result) {
         $("#id").val(result.guestID);
         $("#firstName").val(result.guestFirstName);

@@ -1,9 +1,3 @@
-<html>
-<head>
-    <title>Home page</title>
-    <link href="css/bookings.css" rel="stylesheet">
-</head>
-<body>
 <div class="row">
     <div class="col-md-12">
         <br/><br/>
@@ -11,10 +5,10 @@
 </div>
 <div class="row">
     <div class="col-md-2">
-        <h1>Boeking</h1>
+        <h1>Boekingen</h1>
     </div>
     <div class="col-md-10">
-        <button type="button" class="button">Boeken</button>
+        <div class=text-right><p class="lead"><a href="" id="linkAddBooking"><font color="#ff3385"><b>Boeking toevoegen</b></font></a></p></div>
     </div>
 </div>
 <div class="row">
@@ -25,28 +19,80 @@
 <div class="row">
     <table class="table table-hover" id="table">
         <thead>
-<body>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Voornaam</th>
+            <th>Achternaam</th>
+            <th>Kamernummer</th>
+            <th>Van</th>
+            <th>Tot</th>
+            <th>Betaald</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 
+<div class="modal fade" id="bookingModal" role="dialog">
+    <div class="modal-dialog modal-lg">
 
-    <center>
-        <p id="output"></p>
-        Klant nummer:<br><input id="guestID" type="text" placeholder="Voer in"><br>
-        Kamer nummer:<br><input id="roomID" type="text" placeholder="Voer in"><br>
-        Boekingnummer:<br><input id="bookID" type="text" placeholder="Voer in"><br>
-        Aankomst datum:<br><input id="startID" type="text" placeholder="Voer in"><br>
-        Vertrek datum:<br><input id="stopID" type="text" placeholder="Voer in"><br>
-        Betaald:<br><input id="guestPaid" type="text" placeholder="Voer in"><br>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Boeking toevoegen</h4>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <input type="hidden" id="id">
+                    <div class="form-group row">
+                        <label for="firstName" class="col-sm-4 col-form-label">Voornaam:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="firstName" placeholder="Aaricia">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lastName" class="col-sm-4 col-form-label">Achternaam:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="lastName" placeholder="van Oostrom">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="roomNumber" class="col-sm-4 col-form-label">Kamernummer:</label>
+                        <div class="col-sm-8">
+                            <input type="tel" class="form-control" id="roomNumber" placeholder="101">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="startDate" class="col-sm-4 col-form-label">Van:</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="startDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="stopDate" class="col-sm-4 col-form-label">Tot:</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="stopDate">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="paid" class="col-sm-4 col-form-label">Betaald:</label>
+                        <div class="col-sm-8">
+                            <select id="paid">
+                                <option val="0">true</option>
+                                <option val="1">false</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type='button' id='btnAddBooking' class='btn btn-primary'>Voeg toe</button>
+                    <button type='button' id='btnUpdateBooking' class='btn btn-primary'>Pas aan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-
-        <button id="post">Accepteer</button>
-
-
-
-    </center>
-
-    <script src="jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script src="bookings.js"></script>
-</body>
-</html>
+<script src="js/bookings.js"></script>

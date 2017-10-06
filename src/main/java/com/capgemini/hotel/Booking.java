@@ -5,24 +5,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
-
-import javafx.util.converter.LocalDateStringConverter;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 public class Booking {
 
-    private int guestID;
-    private int roomID;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int bookID;
-    private boolean guestPaid = false;
+    private long bookID;
+    private String firstName;
+    private String lastName;
+    private String roomNumber;
 
     @ManyToOne
     private Room room;
@@ -30,30 +23,49 @@ public class Booking {
     private Guest guest;
     private LocalDate startDate;
     private LocalDate stopDate;
+    private boolean guestPaid = false;
 
-    public Booking(int guestID, int roomID, int bookID, LocalDate startDate, LocalDate stopDate, boolean guestPaid) {
-        this.guestID = guestID;
-        this.roomID = roomID;
-        this.bookID = bookID;
+    protected Booking() {}
+
+    public Booking(String firstName, String lastName, String roomNumber, LocalDate startDate, LocalDate stopDate, boolean guestPaid) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.roomNumber = roomNumber;
         this.startDate = startDate;
         this.stopDate = stopDate;
         this.guestPaid = guestPaid;
     }
 
-    public int getBookID() {
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public long getBookID() {
         return bookID;
     }
 
-    public void setBookID(int bookID) {
+    public void setBookID(long bookID) {
         this.bookID = bookID;
     }
 
-    public boolean isGuestPaid() {
-        return guestPaid;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setGuestPaid(boolean guestPaid) {
-        this.guestPaid = guestPaid;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Room getRoom() {
@@ -88,13 +100,12 @@ public class Booking {
         this.stopDate = stopDate;
     }
 
+    public boolean isGuestPaid() {
+        return guestPaid;
+    }
 
-    @Override
-    public String toString() {
-
-
-        return "Guest number: " + guestID + " - Room number: " + roomID + " - Booking number" + bookID +
-                " - From: " + startDate + " - To: " + stopDate;
+    public void setGuestPaid(boolean guestPaid) {
+        this.guestPaid = guestPaid;
     }
 }
 

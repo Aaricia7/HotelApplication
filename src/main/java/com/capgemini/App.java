@@ -21,14 +21,28 @@ public class App
     public static void main(String[] args)  {
         SpringApplication.run(App.class, args);
     }
+//
+//    @Bean
+//    public CommandLineRunner demo(GuestRepository repository) {
+//        return(args) -> {
+//            repository.save(new Guest("Aaricia", "van Oostrom", "Lijsterlaan 1", "3135KL",
+//                    "Vlaardingen", "Nederland", "0621895051", "aariciavo@gmail.com"));
+//            log.info("Customers found with findAll():");
+//            log.info("-------------------------------");
+//            for (Guest guest : repository.findAll()) {
+//                log.info(guest.toString());
+//            }
+//            log.info("");
+//        };
+//    }
 
-    @Bean
-    public CommandLineRunner demo(GuestRepository repository) {
-        return(args) -> {
-            repository.save(new Guest("Aaricia", "van Oostrom", "Lijsterlaan 1", "3135KL",
-                    "Vlaardingen", "Nederland", "0621895051", "aariciavo@gmail.com"));
-        };
-    }
+//    @Bean
+//    public CommandLineRunner demo1(RoomRepository repository) {
+//        return(args) -> {
+//            repository.save(new Room(ERoomSize.TWEEPERSOONS,ERoomType.BUDGET,true, null, "100"));
+//        };
+//    }
+
 
 //    @Bean
 //    public CommandLineRunner demo2(RoomRepository repository) {
@@ -36,15 +50,15 @@ public class App
 //            repository.save(new Room(ERoomSize.EENPERSOONS, ERoomType.BUDGET, true, LocalDate.now(), "201"));
 //        };
 //    }
-//
+////
 //    @Bean
 //    public CommandLineRunner demo3(BookingRepository repository) {
 //        return(args) -> {
-//            repository.save(new Booking(1, 1, LocalDate.now(), LocalDate.now(), false));
+//            repository.save(new Booking("Aaricia", "van Oostrom", "101", LocalDate.now(), LocalDate.now(), false));
 //        };
-//    }
-
-
-
-
 }
+
+
+
+
+

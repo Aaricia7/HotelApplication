@@ -53,9 +53,21 @@ function getObject() {
 }
 
 function del(id) {
-    $.ajax({url: "/api/bookings/"+id+"/", type: "DELETE"}).done( function() {
-    getAll();
-    })
+    $.confirm({
+        title: 'Verwijdering bevestigen',
+        content: 'Weet u zeker dat u deze boeking wilt verwijderen?',
+        buttons: {
+            confirm: function () {
+                $.ajax({url: "/api/bookings/"+id+"/", type: "DELETE"}).done( function() {
+                    getAll();
+                    })
+                $.alert('Boeking is verwijderd');
+            },
+            cancel: function () {
+            }
+        }
+    });
+
 }
 
 function edit(id) {

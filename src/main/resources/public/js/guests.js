@@ -58,9 +58,20 @@ $("#btnUpdateGuest").click( function (e) {
 })
 
 function del(id) {
-    $.ajax({url: "/api/guests/"+id+"/", type: "DELETE"}).done( function() {
-    getAll();
-    })
+    $.confirm({
+        title: 'Verwijdering bevestigen',
+        content: 'Weet u zeker dat u deze gast wilt verwijderen?',
+        buttons: {
+            confirm: function () {
+                $.ajax({url: "/api/guests/"+id+"/", type: "DELETE"}).done( function() {
+                    getAll();
+                })
+                $.alert('Gast is verwijderd');
+            },
+            cancel: function () {
+            }
+        }
+    });
 }
 
 function edit(id) {

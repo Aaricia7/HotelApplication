@@ -11,22 +11,21 @@ getAll();
 
 function getAll() {
     $.get("/api/rooms/", function (result) {
-        console.log(result);
         table.clear();
         for (var i = 0; i < result.length; i++) {
-            table.row.add(["<a href=\"javascript:del(" + result[i].roomID + ")\"><i class='fa fa-trash-o' aria-hidden='true'></i></a>",
-                            "<a href=\"javascript:edit("+result[i].roomID+")\">"+result[i].roomID+"</a>",
+            table.row.add(["<a href=\"javascript:del(" + result[i].roomID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
+                            "<a href=\"javascript:edit("+result[i].roomID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
                             result[i].roomSize,
                             result[i].roomType,
                             result[i].roomNumber,
-                            result[i].dateReady]);
+                            (result[i].dateReady[2]+"/"+result[i].dateReady[1]+"/"+result[i].dateReady[0])]);
         }
         table.draw();
     });
 }
 
 $("#btnClose").click(function() {
- $("#roomModal").modal("hide");
+    $("#roomModal").modal("hide");
 });
 
 
@@ -40,6 +39,7 @@ $("#btnAddRoom").click( function (e) {
         contentType: "application/json; charset=utf-8"
         }).done(function () {
         $("#roomModal").modal("toggle");
+        $("#roomModal input").val("");
         getAll();
     })
 })
@@ -54,6 +54,7 @@ $("#btnUpdateRoom").click( function (e) {
         contentType: "application/json; charset=utf-8"
         }).done(function () {
         $("#roomModal").modal("toggle");
+        $("#roomModal input").val("");
         getAll();
     })
 })
@@ -66,11 +67,10 @@ function del(id) {
 
 function edit(id) {
     $.get({url:"/api/rooms/"+id+"/", type:"GET"}).done( function(result) {
-        $("#id").val(result.guestID);
+        $("#id").val(result.roomID);
         $("#roomSize").val(result.roomSize);
         $("#roomType").val(result.roomType);
         $("#dateReady").val(result.dateReady);
-        $("#roomAvailable").val(result.roomAvailable);
         $("#roomNumber").val(result.roomNumber);
     })
 }

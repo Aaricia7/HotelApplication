@@ -13,8 +13,8 @@ function getAll() {
     $.get("/api/bookings/", function (result) {
         table.clear();
         for (var i = 0; i < result.length; i++) {
-            table.row.add(["<a href=\"javascript:del(" + result[i].bookID + ")\"><i class='fa fa-trash-o' aria-hidden='true'></i></a>",
-                            "<a href=\"javascript:edit("+result[i].bookID+")\">"+result[i].bookID+"</a>",
+            table.row.add(["<a href=\"javascript:del(" + result[i].bookID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
+                            "<a href=\"javascript:edit("+result[i].bookID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
                             result[i].firstName,
                             result[i].lastName,
                             result[i].roomNumber,

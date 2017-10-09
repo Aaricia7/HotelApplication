@@ -11,11 +11,10 @@ getAll();
 
 function getAll() {
     $.get("/api/rooms/", function (result) {
-        console.log(result);
         table.clear();
         for (var i = 0; i < result.length; i++) {
-            table.row.add(["<a href=\"javascript:del(" + result[i].roomID + ")\"><i class='fa fa-trash-o' aria-hidden='true'></i></a>",
-                            "<a href=\"javascript:edit("+result[i].roomID+")\">"+result[i].roomID+"</a>",
+            table.row.add(["<a href=\"javascript:del(" + result[i].roomID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
+                            "<a href=\"javascript:edit("+result[i].roomID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
                             result[i].roomSize,
                             result[i].roomType,
                             result[i].roomNumber,
@@ -26,7 +25,7 @@ function getAll() {
 }
 
 $("#btnClose").click(function() {
- $("#roomModal").modal("hide");
+    $("#roomModal").modal("hide");
 });
 
 

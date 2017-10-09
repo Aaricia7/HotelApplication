@@ -11,11 +11,10 @@ getAll();
 
 function getAll() {
     $.get("/api/guests/", function (result) {
-        console.log(result);
         table.clear();
         for (var i = 0; i < result.length; i++) {
-            table.row.add(["<a href=\"javascript:del(" + result[i].guestID + ")\"><i class='fa fa-trash-o' aria-hidden='true'></i></a>",
-                            "<a href=\"javascript:edit("+result[i].guestID+")\">"+result[i].guestID+"</a>",
+            table.row.add(["<a href=\"javascript:del(" + result[i].guestID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
+                            "<a href=\"javascript:edit("+result[i].guestID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
                             result[i].guestFirstName,
                             result[i].guestLastName,
                             result[i].guestPhonenumber,

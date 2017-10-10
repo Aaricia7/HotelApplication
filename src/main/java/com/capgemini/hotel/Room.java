@@ -65,6 +65,7 @@ public class Room {
     }
 
     public void setRoomAvailable(boolean roomAvailable) {
+
         this.roomAvailable = roomAvailable;
     }
 

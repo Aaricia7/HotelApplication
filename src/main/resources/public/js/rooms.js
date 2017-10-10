@@ -5,6 +5,8 @@ $("#linkAddRoom").click(function (e) {
     $("#roomModal").modal("toggle");
     $("#btnUpdateRoom").hide();
     $("#btnAddRoom").show();
+    $("#titleAddRoom").show();
+    $("#titleChangeRoom").hide();
 });
 
 getAll();
@@ -34,7 +36,6 @@ $("#btnClose").click(function() {
 $("#btnAddRoom").click( function (e) {
     e.preventDefault();
     var obj = getObject();
-    console.log(obj);
     $.ajax({
         url: "/api/rooms/",
         method:"POST",
@@ -82,6 +83,8 @@ function del(id) {
 function edit(id) {
     $("#btnAddRoom").hide();
     $("#btnUpdateRoom").show();
+    $("#titleAddRoom").hide();
+    $("#titleChangeRoom").show();
     $.get({url:"/api/rooms/"+id+"/", type:"GET"}).done( function(result) {
         var available = result.roomAvailable;
         $("#id").val(result.roomID);

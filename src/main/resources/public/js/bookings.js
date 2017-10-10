@@ -84,14 +84,15 @@ function edit(id) {
     $("#titleChangeBooking").show();
     $.get({url:"/api/bookings/"+id+"/", type:"GET"}).done( function(result) {
         var paid = result.guestPaid;
-        var start = result.startDate[2] + "/" + result.startDate[1] + "/" + result.startDate[0];
+        var start = result.startDate[0] + "-" + result.startDate[1] + "-" + result.startDate[2];
+        var stop = result.stopDate[0] + "-" + result.stopDate[1] + "-" + result.stopDate[2];
         $("#id").val(result.bookID);
         $("#firstName").val(result.firstName);
         $("#lastName").val(result.lastName);
         $("#roomNumber").val(result.roomNumber);
         $("#peopleBooking").val(result.peopleBooking);
-        $("#startDate").val(result.startDate);
-        $("#stopDate").val(result.stopDate);
+        $("#startDate").val(start);
+        $("#stopDate").val(stop);
         $('#paid option:contains(' +  paid + ')').prop({selected: true});
         $("#checkIn").val(result.checkIn);
         $("#bookingModal").modal("toggle");

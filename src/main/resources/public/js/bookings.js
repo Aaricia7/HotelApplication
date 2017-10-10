@@ -5,6 +5,8 @@ $("#linkAddBooking").click(function (e) {
     $("#bookingModal").modal("toggle");
     $("#btnUpdateBooking").hide();
     $("#btnAddBooking").show();
+    $("#titleAddBooking").show();
+    $("#titleChangeBooking").hide();
 });
 
 getAll();
@@ -73,12 +75,15 @@ function del(id) {
 function edit(id) {
     $("#btnAddBooking").hide();
     $("#btnUpdateBooking").show();
+    $("#titleAddBooking").hide();
+    $("#titleChangeBooking").show();
     $.get({url:"/api/bookings/"+id+"/", type:"GET"}).done( function(result) {
         var paid = result.guestPaid;
         var start = result.startDate[2] + "/" + result.startDate[1] + "/" + result.startDate[0];
         $("#id").val(result.bookID);
         $("#guestID").val(result.guestID);
         $("roomID").val(result.roomID);
+        $("#peopleBooking").val(result.peopleBooking);
         $("#startDate").val(result.startDate);
         $("#stopDate").val(result.stopDate);
         $('#paid option:contains(' +  paid + ')').prop({selected: true});

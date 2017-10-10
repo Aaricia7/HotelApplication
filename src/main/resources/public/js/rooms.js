@@ -5,6 +5,8 @@ $("#linkAddRoom").click(function (e) {
     $("#roomModal").modal("toggle");
     $("#btnUpdateRoom").hide();
     $("#btnAddRoom").show();
+    $("#titleAddRoom").show();
+    $("#titleChangeRoom").hide();
 });
 
 getAll();
@@ -18,6 +20,7 @@ function getAll() {
                             result[i].roomSize,
                             result[i].roomType,
                             result[i].roomNumber,
+                            result[i].roomAvailable,
                             (result[i].dateReady[2]+"/"+result[i].dateReady[1]+"/"+result[i].dateReady[0])]);
         }
         table.draw();
@@ -34,7 +37,7 @@ $("#btnAddRoom").click( function (e) {
     var obj = getObject();
     $.ajax({
         url: "/api/rooms/",
-        method:"PUT",
+        method:"POST",
         data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8"
         }).done(function () {
@@ -77,12 +80,18 @@ function del(id) {
 }
 
 function edit(id) {
+    $("#btnAddRoom").hide();
+    $("#btnUpdateRoom").show();
+    $("#titleAddRoom").hide();
+    $("#titleChangeRoom").show();
     $.get({url:"/api/rooms/"+id+"/", type:"GET"}).done( function(result) {
         $("#id").val(result.roomID);
         $("#roomSize").val(result.roomSize);
         $("#roomType").val(result.roomType);
         $("#dateReady").val(result.dateReady);
         $("#roomNumber").val(result.roomNumber);
+        $("#roomAvailable").val(result.roomAvailable);
+        $("#roomModal").modal("toggle");
     })
 }
 
@@ -93,6 +102,10 @@ function getObject() {
     obj.dateReady = $("#dateReady").val();
     obj.roomAvailable = $("#roomAvailable").val();
     obj.roomNumber = $("#roomNumber").val();
+    obj.roomAvailable = $("#roomAvailable").val();
     return obj;
 }
+
+
+
 

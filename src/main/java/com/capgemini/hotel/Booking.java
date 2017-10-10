@@ -17,6 +17,7 @@ public class Booking {
     private String lastName;
     private String roomNumber;
     private int peopleBooking;
+    private EBookingCheckIn checkIn;
 
     @ManyToOne
     private Room room;
@@ -28,7 +29,7 @@ public class Booking {
 
     protected Booking() {}
 
-    public Booking(String firstName, String lastName, String roomNumber, LocalDate startDate, LocalDate stopDate, boolean guestPaid, int peopleBooking) {
+    public Booking(String firstName, String lastName, String roomNumber, LocalDate startDate, LocalDate stopDate, boolean guestPaid, int peopleBooking, EBookingCheckIn checkIn) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.roomNumber = roomNumber;
@@ -36,6 +37,15 @@ public class Booking {
         this.stopDate = stopDate;
         this.guestPaid = guestPaid;
         this.peopleBooking = peopleBooking;
+        this.checkIn = checkIn;
+    }
+
+    public EBookingCheckIn getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(EBookingCheckIn checkIn) {
+        this.checkIn = checkIn;
     }
 
     public int getPeopleBooking() {

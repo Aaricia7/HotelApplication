@@ -24,7 +24,8 @@ function getAll() {
                             result[i].peopleBooking,
                             (result[i].startDate[2]+"/"+result[i].startDate[1]+"/"+result[i].startDate[0]),
                             (result[i].stopDate[2]+"/"+result[i].stopDate[1]+"/"+result[i].stopDate[0]),
-                            paid]);
+                            paid,
+                            result[i].checkIn]);
         }
         table.draw();
     });
@@ -53,6 +54,7 @@ function getObject() {
     obj.startDate = $("#startDate").val();
     obj.stopDate = $("#stopDate").val();
     obj.guestPaid = ($("#paid").val()=="Betaald") ? true : false;
+    obj.checkIn = $("#checkIn").val();
     obj.bookID = $("#id").val();
     return obj;
 }
@@ -91,6 +93,7 @@ function edit(id) {
         $("#startDate").val(result.startDate);
         $("#stopDate").val(result.stopDate);
         $('#paid option:contains(' +  paid + ')').prop({selected: true});
+        $("#checkIn").val(result.checkIn);
         $("#bookingModal").modal("toggle");
     })
 }

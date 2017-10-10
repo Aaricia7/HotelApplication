@@ -60,9 +60,20 @@ $("#btnUpdateRoom").click( function (e) {
 })
 
 function del(id) {
-    $.ajax({url: "/api/rooms/"+id+"/", type: "DELETE"}).done( function() {
-    getAll();
-    })
+    $.confirm({
+        title: 'Verwijdering bevestigen',
+        content: 'Weet u zeker dat u deze kamer wilt verwijderen?',
+        buttons: {
+            confirm: function () {
+                 $.ajax({url: "/api/rooms/"+id+"/", type: "DELETE"}).done( function() {
+                 getAll();
+                 })
+                $.alert('Kamer is verwijderd');
+            },
+            cancel: function () {
+            }
+        }
+    });
 }
 
 function edit(id) {

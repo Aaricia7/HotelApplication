@@ -13,6 +13,7 @@ function getAll() {
     $.get("/api/bookings/", function (result) {
         table.clear();
         for (var i = 0; i < result.length; i++) {
+            var paid = (result[i].guestPaid) ? "Betaald" : "Niet betaald";
             table.row.add(["<a href=\"javascript:del(" + result[i].bookID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
                             "<a href=\"javascript:edit("+result[i].bookID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
                             result[i].firstName,
@@ -20,7 +21,7 @@ function getAll() {
                             result[i].roomNumber,
                             (result[i].startDate[2]+"/"+result[i].startDate[1]+"/"+result[i].startDate[0]),
                             (result[i].stopDate[2]+"/"+result[i].stopDate[1]+"/"+result[i].stopDate[0]),
-                            result[i].guestPaid]);
+                            paid]);
         }
         table.draw();
     });
@@ -47,15 +48,27 @@ function getObject() {
     obj.roomNumber = $("#roomNumber").val();
     obj.startDate = $("#startDate").val();
     obj.stopDate = $("#stopDate").val();
-    obj.guestPaid = $("#paid").val();
+    obj.guestPaid = ($("#paid").val()=="Betaald") ? true : false;
     obj.bookID = $("#id").val();
     return obj;
 }
 
 function del(id) {
-    $.ajax({url: "/api/bookings/"+id+"/", type: "DELETE"}).done( function() {
-    getAll();
-    })
+    $.confirm({
+        title: 'Verwijdering bevestigen',
+        content: 'Weet u zeker dat u deze boeking wilt verwijderen?',
+        buttons: {
+            confirm: function () {
+                $.ajax({url: "/api/bookings/"+id+"/", type: "DELETE"}).done( function() {
+                    getAll();
+                    })
+                $.alert('Boeking is verwijderd');
+            },
+            cancel: function () {
+            }
+        }
+    });
+
 }
 
 function edit(id) {
@@ -70,7 +83,7 @@ function edit(id) {
         $("#roomNumber").val(result.roomNumber);
         $("#startDate").val(result.startDate);
         $("#stopDate").val(result.stopDate);
-         $('#paid option:contains(' +  paid + ')').prop({selected: true});
+        $('#paid option:contains(' +  paid + ')').prop({selected: true});
         $("#bookingModal").modal("toggle");
     })
 }

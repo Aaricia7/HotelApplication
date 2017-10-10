@@ -20,7 +20,7 @@ public class Room {
 
     protected Room() {}
 
-    public Room( ERoomSize roomSize, ERoomType roomType, boolean roomAvailable, LocalDate dateReady, String roomNumber) {
+    public Room(ERoomSize roomSize, ERoomType roomType, boolean roomAvailable, LocalDate dateReady, String roomNumber) {
         this.roomSize = roomSize;
         this.roomType = roomType;
         this.dateReady = dateReady;

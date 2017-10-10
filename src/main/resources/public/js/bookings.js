@@ -5,6 +5,8 @@ $("#linkAddBooking").click(function (e) {
     $("#bookingModal").modal("toggle");
     $("#btnUpdateBooking").hide();
     $("#btnAddBooking").show();
+    $("#titleAddBooking").show();
+    $("#titleChangeBooking").hide();
 });
 
 getAll();
@@ -19,6 +21,7 @@ function getAll() {
                             result[i].firstName,
                             result[i].lastName,
                             result[i].roomNumber,
+                            result[i].peopleBooking,
                             (result[i].startDate[2]+"/"+result[i].startDate[1]+"/"+result[i].startDate[0]),
                             (result[i].stopDate[2]+"/"+result[i].stopDate[1]+"/"+result[i].stopDate[0]),
                             paid]);
@@ -46,6 +49,7 @@ function getObject() {
     obj.firstName = $("#firstName").val();
     obj.lastName =  $("#lastName").val();
     obj.roomNumber = $("#roomNumber").val();
+    obj.peopleBooking = $("#peopleBooking").val();
     obj.startDate = $("#startDate").val();
     obj.stopDate = $("#stopDate").val();
     obj.guestPaid = ($("#paid").val()=="Betaald") ? true : false;
@@ -74,6 +78,8 @@ function del(id) {
 function edit(id) {
     $("#btnAddBooking").hide();
     $("#btnUpdateBooking").show();
+    $("#titleAddBooking").hide();
+    $("#titleChangeBooking").show();
     $.get({url:"/api/bookings/"+id+"/", type:"GET"}).done( function(result) {
         var paid = result.guestPaid;
         var start = result.startDate[2] + "/" + result.startDate[1] + "/" + result.startDate[0];
@@ -81,6 +87,7 @@ function edit(id) {
         $("#firstName").val(result.firstName);
         $("#lastName").val(result.lastName);
         $("#roomNumber").val(result.roomNumber);
+        $("#peopleBooking").val(result.peopleBooking);
         $("#startDate").val(result.startDate);
         $("#stopDate").val(result.stopDate);
         $('#paid option:contains(' +  paid + ')').prop({selected: true});

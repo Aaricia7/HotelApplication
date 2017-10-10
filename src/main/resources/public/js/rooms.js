@@ -34,7 +34,7 @@ $("#btnAddRoom").click( function (e) {
     var obj = getObject();
     $.ajax({
         url: "/api/rooms/",
-        method:"PUT",
+        method:"POST",
         data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8"
         }).done(function () {

@@ -16,9 +16,9 @@ function getAll() {
             var paid = (result[i].guestPaid) ? "Betaald" : "Niet betaald";
             table.row.add(["<a href=\"javascript:del(" + result[i].bookID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
                             "<a href=\"javascript:edit("+result[i].bookID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
-                            result[i].firstName,
-                            result[i].lastName,
-                            result[i].roomNumber,
+                            result[i].guest.firstName,
+                            result[i].guest.lastName,
+                            result[i].room.roomNumber,
                             (result[i].startDate[2]+"/"+result[i].startDate[1]+"/"+result[i].startDate[0]),
                             (result[i].stopDate[2]+"/"+result[i].stopDate[1]+"/"+result[i].stopDate[0]),
                             paid]);
@@ -43,9 +43,8 @@ $("#btnAddBooking").click(function (e) {
 
 function getObject() {
     var obj = {};
-    obj.firstName = $("#firstName").val();
-    obj.lastName =  $("#lastName").val();
-    obj.roomNumber = $("#roomNumber").val();
+    obj.guestID = $("#guestID").val();
+    obj.roomID = $("roomID").val();
     obj.startDate = $("#startDate").val();
     obj.stopDate = $("#stopDate").val();
     obj.guestPaid = ($("#paid").val()=="Betaald") ? true : false;
@@ -78,9 +77,8 @@ function edit(id) {
         var paid = result.guestPaid;
         var start = result.startDate[2] + "/" + result.startDate[1] + "/" + result.startDate[0];
         $("#id").val(result.bookID);
-        $("#firstName").val(result.firstName);
-        $("#lastName").val(result.lastName);
-        $("#roomNumber").val(result.roomNumber);
+        $("#guestID").val(result.guestID);
+        $("roomID").val(result.roomID);
         $("#startDate").val(result.startDate);
         $("#stopDate").val(result.stopDate);
         $('#paid option:contains(' +  paid + ')').prop({selected: true});

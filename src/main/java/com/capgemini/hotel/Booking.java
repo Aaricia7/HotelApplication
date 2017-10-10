@@ -13,9 +13,8 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long bookID;
-    private String firstName;
-    private String lastName;
-    private String roomNumber;
+    private long guestID;
+    private long roomID;
 
     @ManyToOne
     private Room room;
@@ -25,23 +24,20 @@ public class Booking {
     private LocalDate stopDate;
     private boolean guestPaid = false;
 
-    protected Booking() {}
-
-    public Booking(String firstName, String lastName, String roomNumber, LocalDate startDate, LocalDate stopDate, boolean guestPaid) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.roomNumber = roomNumber;
-        this.startDate = startDate;
-        this.stopDate = stopDate;
-        this.guestPaid = guestPaid;
+    public long getGuestID() {
+        return guestID;
     }
 
-    public String getRoomNumber() {
-        return roomNumber;
+    public void setGuestID(long guestID) {
+        this.guestID = guestID;
     }
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
+    public long getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(long roomID) {
+        this.roomID = roomID;
     }
 
     public long getBookID() {
@@ -50,22 +46,6 @@ public class Booking {
 
     public void setBookID(long bookID) {
         this.bookID = bookID;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Room getRoom() {

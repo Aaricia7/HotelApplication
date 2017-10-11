@@ -2,6 +2,7 @@ var table = $("#table").DataTable();
 
 $("#linkAddBooking").click(function (e) {
     e.preventDefault();
+    getOptionsRoom();
     $("#bookingModal").modal("toggle");
     $("#btnUpdateBooking").hide();
     $("#btnAddBooking").show();
@@ -18,12 +19,13 @@ function getAll() {
             var paid = (result[i].guestPaid) ? "Betaald" : "Niet betaald";
             table.row.add(["<a href=\"javascript:del(" + result[i].bookID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
                             "<a href=\"javascript:edit("+result[i].bookID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
-                            result[i].guest.firstName,
-                            result[i].guest.lastName,
+                            result[i].guest.guestFirstName,
+                            result[i].guest.guestLastName,
                             result[i].room.roomNumber,
+                            "1",
                             (result[i].startDate[2]+"/"+result[i].startDate[1]+"/"+result[i].startDate[0]),
                             (result[i].stopDate[2]+"/"+result[i].stopDate[1]+"/"+result[i].stopDate[0]),
-                            paid]);
+                            result[i].guestPaid]);
         }
         table.draw();
     });
@@ -46,9 +48,10 @@ $("#btnAddBooking").click(function (e) {
 function getObject() {
     var obj = {};
     obj.guestID = $("#guestID").val();
-    obj.roomID = $("roomID").val();
+    obj.roomID = $("#roomID").val();
     obj.startDate = $("#startDate").val();
     obj.stopDate = $("#stopDate").val();
+    obj.peopleBooking = $("#peopleBooking");
     obj.guestPaid = ($("#paid").val()=="Betaald") ? true : false;
     obj.bookID = $("#id").val();
     return obj;
@@ -73,6 +76,7 @@ function del(id) {
 }
 
 function edit(id) {
+    getOptionsRoom();
     $("#btnAddBooking").hide();
     $("#btnUpdateBooking").show();
     $("#titleAddBooking").hide();
@@ -89,6 +93,26 @@ function edit(id) {
         $('#paid option:contains(' +  paid + ')').prop({selected: true});
         $("#bookingModal").modal("toggle");
     })
+}
+
+function getOptionsRoom(){
+    $.get("/api/guests/", function (result) {
+        table.clear();
+        for (var i = 0; i< result.length; i++) {
+            $("#guestID").append("<option value="+result[i].guestID+">"
+            +result[i].guestFirstName+" ,"
+            +result[i].guestLastName+" ,"
+            +result[i].guestAdress+" ,"
+            +result[i].guestCity+"</option>");
+    }})
+    $.get("/api/rooms/", function (result) {
+        table.clear();
+        for (var i = 0; i < result.length; i++) {
+           $("#roomID").append("<option value="+result[i].roomID+">"+result[i].roomNumber+"</option>");
+
+               }
+        }
+    );
 }
 
 $("#btnUpdateBooking").click( function (e) {

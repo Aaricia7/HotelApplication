@@ -1,6 +1,6 @@
 package com.capgemini.repository;
 
-import java.util.List;
+
 import com.capgemini.hotel.Room;
 import org.springframework.data.repository.CrudRepository;
 

@@ -24,6 +24,10 @@ public class RoomController {
         roomRepository.save(room);
     }
 
+
+
+
+
     @RequestMapping(value="{id}/", method= RequestMethod.DELETE)
     public void del(@PathVariable long id) {
         roomRepository.delete(id);

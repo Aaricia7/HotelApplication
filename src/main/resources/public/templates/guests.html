@@ -48,56 +48,72 @@
             <div class="modal-header">
                 <h4 class="modal-title">Gast toevoegen</h4>
             </div>
-            <form>
+            <form id="gastToevoegen">
                 <div class="modal-body">
                     <input type="hidden" id="id">
-                    <div class="form-group row">
 
+                    <legend>Title</legend>
+                    <ul>
+                        <li>
+                            <label for="title_1">
+                                <input type="radio" id="title_1" name="title" value="M." >
+                                Meneer
+                            </label>
+                        </li>
+                        <li>
+                            <label for="title_2">
+                                <input type="radio" id="title_2" name="title" value="Ms.">
+                                Mevrouw
+                            </label>
+                        </li>
+                    </ul>
+
+                    <div class="form-group row">
                         <label for="firstName" class="col-sm-4 col-form-label">Voornaam:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="firstName" placeholder="Aaricia">
+                            <input type="text" class="form-control" id="firstName" placeholder="Aaricia" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="lastName" class="col-sm-4 col-form-label">Achternaam:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="lastName" placeholder="van Oostrom">
+                            <input type="text" class="form-control" id="lastName" placeholder="van Oostrom" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="phoneNumber" class="col-sm-4 col-form-label">Telefoonnummer:</label>
                         <div class="col-sm-8">
-                            <input type="tel" class="form-control" id="phoneNumber" placeholder="0612345678">
+                            <input type="number" class="form-control" id="phoneNumber" min="0" max="100" step="10" value="30"   placeholder="06-xxxxxxxx" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="emailAddress" class="col-sm-4 col-form-label">E-mailadres:</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="emailAddress" placeholder="email@example.com">
+                            <input type="email" class="form-control" id="emailAddress" placeholder="email@example.com" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="address" class="col-sm-4 col-form-label">Adres:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="address" placeholder="Nieuwlandstraat 5">
+                            <input type="text" class="form-control" id="address" placeholder="Nieuwlandstraat 5" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="zipCode" class="col-sm-4 col-form-label">Postcode:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="zipCode" placeholder="3131DA">
+                            <input type="text" class="form-control" id="zipCode" placeholder="3131DA" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="city" class="col-sm-4 col-form-label">Plaats:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="city" placeholder="Vlaardingen">
+                            <input type="text" class="form-control" id="city" placeholder="Vlaardingen" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="country" class="col-sm-4 col-form-label">Land:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="country" placeholder="Nederland">
+                            <input type="text" class="form-control" id="country" placeholder="Nederland" required>
                         </div>
                     </div>
                 </div>
@@ -110,4 +126,23 @@
     </div>
 </div>
 
+<!--<script>-->
+  <!--$("#phoneNumber").validate({-->
+            <!--rules: {-->
+                <!--.text: {-->
+                <!--required: true,-->
+                <!--digits: true-->
+                <!--}-->
+            <!--},-->
+            <!--messages: {-->
+                <!--.text:{-->
+                <!--required: " Please enter a score!",-->
+                <!--digits: " Please only enter numbers!"-->
+                <!--}-->
+            <!--},-->
+            <!--submitHandler: function(form) {-->
+                <!--form.btnAddGuest();-->
+            <!--}-->
+        <!--});-->
+<!--</script>-->
 <script src="js/guests.js"></script>

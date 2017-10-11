@@ -1,5 +1,4 @@
 var table = $("#table").DataTable();
-
 $("#linkAddGuest").click(function (e) {
     e.preventDefault();
     $("#guestModal").modal("toggle");
@@ -30,31 +29,35 @@ function getAll() {
 
 $("#btnAddGuest").click(function (e) {
     var obj = getObject();
-    $.ajax({
-        url: "/api/guests/",
-        type: "POST",
-        data: JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8"
-    }).done(function () {
-        $("#guestModal").modal("toggle");
-        $("#guestModal input").val("");
-        getAll();
-    });
+    if (validation()) {
+            $.ajax({
+                url: "/api/guests/",
+                type: "POST",
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8"
+            }).done(function () {
+                $("#guestModal").modal("toggle");
+                $("#guestModal input").val("");
+                getAll();
+            });
+        }
 });
 
 $("#btnUpdateGuest").click( function (e) {
     e.preventDefault();
     var obj = getObject();
-    $.ajax({
-        url: "/api/guests/",
-        method:"PUT",
-        data: JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8"
-        }).done(function () {
-        $("#guestModal").modal("toggle");
-        $("#guestModal input").val("");
-        getAll();
-    })
+    if (validation()) {
+        $.ajax({
+            url: "/api/guests/",
+            method:"PUT",
+            data: JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8"
+            }).done(function () {
+            $("#guestModal").modal("toggle");
+            $("#guestModal input").val("");
+            getAll();
+        })
+     }
 })
 
 function del(id) {
@@ -103,5 +106,9 @@ function getObject() {
     obj.guestEmailAdress = $("#emailAddress").val();
     obj.guestID = $("#id").val();
     return obj;
+}
+
+function validation() {
+ $("#gastToevoegen").validate();
 }
 

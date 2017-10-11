@@ -2,6 +2,7 @@ package com.capgemini.controller;
 
 import com.capgemini.hotel.Guest;
 import com.capgemini.repository.GuestRepository;
+import com.capgemini.repository.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -20,7 +21,10 @@ public class GuestController {
 
     @RequestMapping(value="", method=RequestMethod.POST)
     public void add(@RequestBody Guest guest) {
-        guestRepository.save(guest);
+      if( Validators.emailMatcher(guest.getGuestEmailAdress()) &&
+        Validators.phoneMatcher(guest.getGuestPhonenumber())) {
+          guestRepository.save(guest);
+      }
     }
 
     @RequestMapping(value="{id}/", method= RequestMethod.DELETE)

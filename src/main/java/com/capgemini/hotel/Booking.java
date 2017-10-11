@@ -15,6 +15,11 @@ public class Booking {
     private long bookID;
     private long guestID;
     private long roomID;
+    private int peopleBooking;
+    private String firstName;
+    private String lastName;
+    private String roomNumber;
+    private EBookingCheckIn checkIn;
 
     @ManyToOne
     private Room room;
@@ -23,6 +28,27 @@ public class Booking {
     private LocalDate startDate;
     private LocalDate stopDate;
     private boolean guestPaid = false;
+
+    protected Booking() {}
+
+    public Booking(String firstName, String lastName, String roomNumber, LocalDate startDate, LocalDate stopDate, boolean guestPaid, int peopleBooking) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.roomNumber = roomNumber;
+        this.startDate = startDate;
+        this.stopDate = stopDate;
+        this.guestPaid = guestPaid;
+        this.peopleBooking = peopleBooking;
+        this.checkIn = checkIn;
+    }
+
+    public EBookingCheckIn getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(EBookingCheckIn checkIn) {
+        this.checkIn = checkIn;
+    }
 
     public long getGuestID() {
         return guestID;

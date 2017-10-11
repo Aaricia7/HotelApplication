@@ -87,10 +87,11 @@ function edit(id) {
     $("#titleChangeRoom").show();
     $.get({url:"/api/rooms/"+id+"/", type:"GET"}).done( function(result) {
         var available = result.roomAvailable;
+        var date = result.dateReady[0]+"-"+result.dateReady[1]+"-"+result.dateReady[2];
         $("#id").val(result.roomID);
         $("#roomSize").val(result.roomSize);
         $("#roomType").val(result.roomType);
-        $("#dateReady").val(result.dateReady);
+        document.getElementById("dateReady").value = date;
         $("#roomNumber").val(result.roomNumber);
         $('#roomAvailable option:contains(' +  available + ')').prop({selected: true});
         $("#roomModal").modal("toggle");

@@ -18,8 +18,8 @@ function getAll() {
             var available = (result[i].roomAvailable) ? "Ja" : "Nee";
             table.row.add(["<a href=\"javascript:del(" + result[i].roomID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
                             "<a href=\"javascript:edit("+result[i].roomID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
-                            result[i].roomSize,
-                            result[i].roomType,
+                            result[i].roomSize.toLowerCase().replace(/\_/g, ' '),
+                            result[i].roomType.toLowerCase(),
                             result[i].roomNumber,
                             available,
                             (result[i].dateReady[2]+"/"+result[i].dateReady[1]+"/"+result[i].dateReady[0])]);
@@ -102,8 +102,9 @@ function getObject() {
     var obj = {};
     obj.roomSize = $("#roomSize").val();
     obj.roomType =  $("#roomType").val();
+    console.debug(obj.roomSize);
     obj.dateReady = $("#dateReady").val();
-    obj.roomAvailable = ($("#roomAvailable").val()=="Ja") ? true : false;
+    obj.roomAvailable = $("#roomAvailable").val();;
     obj.roomNumber = $("#roomNumber").val();
     obj.roomID = $("#id").val();
     return obj;

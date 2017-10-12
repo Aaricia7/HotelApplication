@@ -93,7 +93,6 @@ function updateGuest(obj) {
             }
      });
 }
-
 function del(id) {
     $.confirm({
         title: 'Verwijdering bevestigen',

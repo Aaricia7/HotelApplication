@@ -13,9 +13,13 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long bookID;
+    private long guestID;
+    private long roomID;
+    private int peopleBooking;
     private String firstName;
     private String lastName;
     private String roomNumber;
+    private EBookingCheckIn checkIn;
 
     @ManyToOne
     private Room room;
@@ -27,21 +31,28 @@ public class Booking {
 
     protected Booking() {}
 
-    public Booking(String firstName, String lastName, String roomNumber, LocalDate startDate, LocalDate stopDate, boolean guestPaid) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.roomNumber = roomNumber;
-        this.startDate = startDate;
-        this.stopDate = stopDate;
-        this.guestPaid = guestPaid;
+    public EBookingCheckIn getCheckIn() {
+        return checkIn;
     }
 
-    public String getRoomNumber() {
-        return roomNumber;
+    public void setCheckIn(EBookingCheckIn checkIn) {
+        this.checkIn = checkIn;
     }
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
+    public long getGuestID() {
+        return guestID;
+    }
+
+    public void setGuestID(long guestID) {
+        this.guestID = guestID;
+    }
+
+    public long getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(long roomID) {
+        this.roomID = roomID;
     }
 
     public long getBookID() {
@@ -50,22 +61,6 @@ public class Booking {
 
     public void setBookID(long bookID) {
         this.bookID = bookID;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Room getRoom() {
@@ -106,6 +101,14 @@ public class Booking {
 
     public void setGuestPaid(boolean guestPaid) {
         this.guestPaid = guestPaid;
+    }
+
+    public int getPeopleBooking() {
+        return peopleBooking;
+    }
+
+    public void setPeopleBooking(int peopleBooking) {
+        this.peopleBooking = peopleBooking;
     }
 }
 

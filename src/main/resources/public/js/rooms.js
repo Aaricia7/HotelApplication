@@ -5,6 +5,8 @@ $("#linkAddRoom").click(function (e) {
     $("#roomModal").modal("toggle");
     $("#btnUpdateRoom").hide();
     $("#btnAddRoom").show();
+    $("#titleAddRoom").show();
+    $("#titleChangeRoom").hide();
 });
 
 getAll();
@@ -13,11 +15,13 @@ function getAll() {
     $.get("/api/rooms/", function (result) {
         table.clear();
         for (var i = 0; i < result.length; i++) {
+            var available = (result[i].roomAvailable) ? "Ja" : "Nee";
             table.row.add(["<a href=\"javascript:del(" + result[i].roomID + ")\"><font color='#ff3385'><i class='fa fa-trash-o' aria-hidden='true'></i></font></a>",
                             "<a href=\"javascript:edit("+result[i].roomID+")\"><font color='#ff3385'><i class='fa fa-pencil' aria-hidden='true'></i></font></a>",
                             result[i].roomSize,
                             result[i].roomType,
                             result[i].roomNumber,
+                            available,
                             (result[i].dateReady[2]+"/"+result[i].dateReady[1]+"/"+result[i].dateReady[0])]);
         }
         table.draw();
@@ -34,7 +38,7 @@ $("#btnAddRoom").click( function (e) {
     var obj = getObject();
     $.ajax({
         url: "/api/rooms/",
-        method:"PUT",
+        method:"POST",
         data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8"
         }).done(function () {
@@ -77,12 +81,20 @@ function del(id) {
 }
 
 function edit(id) {
+    $("#btnAddRoom").hide();
+    $("#btnUpdateRoom").show();
+    $("#titleAddRoom").hide();
+    $("#titleChangeRoom").show();
     $.get({url:"/api/rooms/"+id+"/", type:"GET"}).done( function(result) {
+        var available = result.roomAvailable;
+        var date = result.dateReady[0]+"-"+result.dateReady[1]+"-"+result.dateReady[2];
         $("#id").val(result.roomID);
         $("#roomSize").val(result.roomSize);
         $("#roomType").val(result.roomType);
-        $("#dateReady").val(result.dateReady);
+        document.getElementById("dateReady").value = date;
         $("#roomNumber").val(result.roomNumber);
+        $('#roomAvailable option:contains(' +  available + ')').prop({selected: true});
+        $("#roomModal").modal("toggle");
     })
 }
 
@@ -91,8 +103,9 @@ function getObject() {
     obj.roomSize = $("#roomSize").val();
     obj.roomType =  $("#roomType").val();
     obj.dateReady = $("#dateReady").val();
-    obj.roomAvailable = $("#roomAvailable").val();
+    obj.roomAvailable = ($("#roomAvailable").val()=="Ja") ? true : false;
     obj.roomNumber = $("#roomNumber").val();
+    obj.roomID = $("#id").val();
     return obj;
 }
 

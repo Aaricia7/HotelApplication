@@ -4,6 +4,8 @@ $("#linkAddGuest").click(function (e) {
     $("#guestModal").modal("toggle");
     $("#btnUpdateGuest").hide();
     $("#btnAddGuest").show();
+    $("#titleAddGuest").show();
+    $("#titleChangeGuest").hide();
 });
 
 getAll();
@@ -99,6 +101,8 @@ function del(id) {
 function edit(id) {
     $("#btnAddGuest").hide();
     $("#btnUpdateGuest").show();
+    $("#titleAddGuest").hide();
+    $("#titleChangeGuest").show();
     $.get({url:"/api/guests/"+id+"/", type:"GET"}).done( function(result) {
         $("#id").val(result.guestID);
         $("#firstName").val(result.guestFirstName);

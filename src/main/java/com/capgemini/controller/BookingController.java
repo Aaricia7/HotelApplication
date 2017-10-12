@@ -22,7 +22,10 @@ public class BookingController {
 
     @RequestMapping(value= "", method=RequestMethod.POST)
     public void add(@RequestBody Booking booking) {
-
+        Guest guest = guestRepository.findOne(booking.getGuestID());
+        Room room = roomRepository.findOne(booking.getRoomID());
+        booking.setGuest(guest);
+        booking.setRoom(room);
         bookingRepository.save(booking);
     }
 

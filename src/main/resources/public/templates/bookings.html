@@ -25,9 +25,11 @@
             <th>Voornaam</th>
             <th>Achternaam</th>
             <th>Kamernummer</th>
+            <th>Aantal personen</th>
             <th>Van</th>
             <th>Tot</th>
             <th>Betaald</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -41,27 +43,30 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Boeking toevoegen</h4>
+                <h4 class="modal-title" id = 'titleAddBooking'>Boeking toevoegen</h4>
+                <h4 class="modal-title" id = 'titleChangeBooking'>Boeking aanpassen</h4>
             </div>
             <form>
                 <div class="modal-body">
                     <input type="hidden" id="id">
                     <div class="form-group row">
-                        <label for="firstName" class="col-sm-4 col-form-label">Voornaam:</label>
+                        <label for="guestID" class="col-sm-4 col-form-label">Gast:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="firstName" placeholder="Aaricia">
+                            <select class="form-control" id="guestID">
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="lastName" class="col-sm-4 col-form-label">Achternaam:</label>
+                        <label for="roomID" class="col-sm-4 col-form-label">Kamer:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="lastName" placeholder="van Oostrom">
+                            <select class="form-control" id="roomID">
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="roomNumber" class="col-sm-4 col-form-label">Kamernummer:</label>
+                        <label for="peopleBooking" class="col-sm-4 col-form-label">Aantal personen:</label>
                         <div class="col-sm-8">
-                            <input type="tel" class="form-control" id="roomNumber" placeholder="101">
+                            <input type="text" class="form-control" id="peopleBooking" placeholder="2">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -80,8 +85,18 @@
                         <label for="paid" class="col-sm-4 col-form-label">Betaald:</label>
                         <div class="col-sm-8">
                             <select id="paid">
-                                <option val="0">true</option>
-                                <option val="1">false</option>
+                                <option val="0">Betaald</option>
+                                <option val="1">Niet betaald</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="checkIn" class="col-sm-4 col-form-label">Status:</label>
+                        <div class="col-sm-8">
+                            <select id="checkIn">
+                                <option val="0">Afwezig</option>
+                                <option val="1">Ingecheckt</option>
+                                <option val="2">Uitgecheckt</option>
                             </select>
                         </div>
                     </div>

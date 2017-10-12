@@ -20,14 +20,6 @@ public class Room {
 
     protected Room() {}
 
-    public Room( ERoomSize roomSize, ERoomType roomType, boolean roomAvailable, LocalDate dateReady, String roomNumber) {
-        this.roomSize = roomSize;
-        this.roomType = roomType;
-        this.dateReady = dateReady;
-        this.roomAvailable = roomAvailable;
-        this.roomNumber = roomNumber;
-    }
-
     public ERoomSize getRoomSize() {
         return roomSize;
     }
@@ -65,6 +57,7 @@ public class Room {
     }
 
     public void setRoomAvailable(boolean roomAvailable) {
+
         this.roomAvailable = roomAvailable;
     }
 

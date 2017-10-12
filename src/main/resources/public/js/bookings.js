@@ -22,7 +22,7 @@ function getAll() {
                             result[i].guest.guestFirstName,
                             result[i].guest.guestLastName,
                             result[i].room.roomNumber,
-                            "1",
+                            result[i].peopleBooking,
                             (result[i].startDate[2]+"/"+result[i].startDate[1]+"/"+result[i].startDate[0]),
                             (result[i].stopDate[2]+"/"+result[i].stopDate[1]+"/"+result[i].stopDate[0]),
                             paid,
@@ -34,6 +34,7 @@ function getAll() {
 
 $("#btnAddBooking").click(function (e) {
     var obj = getObject();
+    console.log(obj);
     $.ajax({
         url: "/api/bookings/",
         type: "POST",
@@ -42,6 +43,7 @@ $("#btnAddBooking").click(function (e) {
     }).done(function () {
         $("#bookingModal").modal("toggle");
         $("#bookingModal input").val("");
+        $("#bookingModal date").val("");
         getAll();
     });
 });
@@ -52,7 +54,7 @@ function getObject() {
     obj.roomID = $("#roomID").val();
     obj.startDate = $("#startDate").val();
     obj.stopDate = $("#stopDate").val();
-    obj.peopleBooking = $("#peopleBooking");
+    obj.peopleBooking = $("#peopleBooking").val();
     obj.guestPaid = ($("#paid").val()=="Betaald") ? true : false;
     obj.checkIn = $("#checkIn").val();
     obj.bookID = $("#id").val();
@@ -102,19 +104,23 @@ function edit(id) {
 function getOptionsRoom(){
     $.get("/api/guests/", function (result) {
         table.clear();
+        document.getElementById("guestID").options.length = 0;
         for (var i = 0; i< result.length; i++) {
             $("#guestID").append("<option value="+result[i].guestID+">"
-            +result[i].guestFirstName+" ,"
-            +result[i].guestLastName+" ,"
-            +result[i].guestAdress+" ,"
+            +result[i].guestFirstName+ " "
+            +result[i].guestLastName+", "
+            +result[i].guestAdress+", "
             +result[i].guestCity+"</option>");
     }})
     $.get("/api/rooms/", function (result) {
         table.clear();
+        document.getElementById("roomID").options.length = 0;
         for (var i = 0; i < result.length; i++) {
-           $("#roomID").append("<option value="+result[i].roomID+">"+result[i].roomNumber+"</option>");
-
-               }
+           $("#roomID").append("<option value="+result[i].roomID+">"
+           +result[i].roomNumber+ ", "
+           +result[i].roomSize+ ", "
+           +result[i].roomType+"</option>");
+           }
         }
     );
 }
@@ -130,6 +136,7 @@ $("#btnUpdateBooking").click( function (e) {
         }).done(function () {
         $("#bookingModal").modal("toggle");
         $("#bookingModal input").val("");
+        $("#bookingModal date").val("");
         getAll();
     })
 })

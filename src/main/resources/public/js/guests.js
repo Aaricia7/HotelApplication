@@ -30,18 +30,15 @@ function getAll() {
 }
 
 $("#btnAddGuest").click(function (e) {
-
     e.preventDefault();
-
     var obj = getObject();
-
+    console.log($("#gastToevoegen").validate());
     if ($("#gastToevoegen").validate()) {
             addGuest(obj);
-            }
+    }
 });
 
 function addGuest(obj) {
-
      $.ajax({
             url: "/api/guests/",
             type: "POST",
@@ -55,14 +52,12 @@ function addGuest(obj) {
 }
 
 $("#btnUpdateGuest").click( function (e) {
-
     e.preventDefault();
-
     var obj = getObject();
 
     if ($("#gastToevoegen").validate()) {
             updateGuest(obj);
-            }
+    }
 })
 
 function updateGuest(obj) {
@@ -132,8 +127,7 @@ function getObject() {
 
 }
 $(document).ready(function(){
-$('#gastToevoegen').validate();
-
+    $('#gastToevoegen').validate();
 });
 
 

@@ -68,11 +68,4 @@ public class Room {
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
-
-    @Override
-    public String toString() {
-        return "Room " + roomID + " - Roomtype: " + roomType + " - Roomsize: " + roomSize + " - Available : " +
-                roomAvailable + " - Date ready: " + dateReady + "\n";
-
-    }
 }

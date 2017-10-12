@@ -91,11 +91,15 @@ function del(id) {
         content: 'Weet u zeker dat u deze gast wilt verwijderen?',
         buttons: {
             confirm: function () {
-                $.ajax({url: "/api/guests/"+id+"/", type: "DELETE"}).success( function() {
-                    getAll();
-                    $.alert('Gast is verwijderd');
-                })
+                $.ajax({url: "/api/guests/"+id+"/", type: "DELETE",
+                    success: function() {
+                        getAll();
+                        $.alert('Gast is verwijderd');
+                    },
+                    error: function(err) {
 
+                    }
+                });
             },
             cancel: function () {
             }

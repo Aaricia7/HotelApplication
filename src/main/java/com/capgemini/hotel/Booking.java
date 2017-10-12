@@ -1,11 +1,14 @@
 package com.capgemini.hotel;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Booking {
@@ -13,17 +16,27 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long bookID;
+
+
     private long guestID;
+
     private long roomID;
+
+
     private int peopleBooking;
     private EBookingCheckIn checkIn;
 
+
     @ManyToOne
     private Room room;
+
     @ManyToOne
     private Guest guest;
+    @NotNull(message="Geef een begin datum op.")
     private LocalDate startDate;
+    @NotNull(message="Geef een eind datum op.")
     private LocalDate stopDate;
+
     private boolean guestPaid = false;
 
     protected Booking() {}

@@ -44,7 +44,15 @@ $("#btnAddBooking").click(function (e) {
         $("#bookingModal input").val("");
         $("#bookingModal date").val("");
         getAll();
-    });
+    }).fail(function (jqXHR, status, thrownError) {
+
+               $("#txtFail").html("Vul alle velden correct in: <br>");
+                var responseText = jQuery.parseJSON(jqXHR.responseText);
+                for (var i=0;i<responseText.length;i++) {
+
+                    $("#txtFail").append(responseText[i]+"<br>");
+                }
+          });
 });
 
 function getObject() {
@@ -66,7 +74,7 @@ function del(id) {
             confirm: function () {
                 $.ajax({url: "/api/bookings/"+id+"/", type: "DELETE"}).done( function() {
                     getAll();
-                    })
+                    });
                 $.alert('Boeking is verwijderd');
             },
             cancel: function () {
@@ -134,7 +142,15 @@ $("#btnUpdateBooking").click( function (e) {
         $("#bookingModal input").val("");
         $("#bookingModal date").val("");
         getAll();
-    })
+    }).fail(function (jqXHR, status, thrownError) {
+
+               $("#txtFail").html("Vul alle velden correct in: <br>");
+                var responseText = jQuery.parseJSON(jqXHR.responseText);
+                for (var i=0;i<responseText.length;i++) {
+
+                    $("#txtFail").append(responseText[i]+"<br>");
+                }
+          });
 })
 
 

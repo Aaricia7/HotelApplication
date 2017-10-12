@@ -91,6 +91,7 @@ function del(id) {
             confirm: function () {
                  $.ajax({url: "/api/rooms/"+id+"/", type: "DELETE"}).done( function() {
                  $.alert('Kamer is verwijderd');
+                 getAll();
                  }).fail( function(err) {
                     $.alert({
                          title: 'Fout',
@@ -102,7 +103,7 @@ function del(id) {
             }
         }
     });
-    getAll();
+
 }
 
 function edit(id) {

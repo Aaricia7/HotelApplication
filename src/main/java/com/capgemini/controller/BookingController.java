@@ -26,7 +26,6 @@ public class BookingController {
         Room room = roomRepository.findOne(booking.getRoomID());
         booking.setGuest(guest);
         booking.setRoom(room);
-        System.out.println(booking.getPeopleBooking());
         bookingRepository.save(booking);
     }
 

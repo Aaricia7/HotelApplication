@@ -31,17 +31,6 @@ public class Booking {
 
     protected Booking() {}
 
-    public Booking(String firstName, String lastName, String roomNumber, LocalDate startDate, LocalDate stopDate, boolean guestPaid, int peopleBooking) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.roomNumber = roomNumber;
-        this.startDate = startDate;
-        this.stopDate = stopDate;
-        this.guestPaid = guestPaid;
-        this.peopleBooking = peopleBooking;
-        this.checkIn = checkIn;
-    }
-
     public EBookingCheckIn getCheckIn() {
         return checkIn;
     }

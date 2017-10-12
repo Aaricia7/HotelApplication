@@ -22,17 +22,6 @@ public class Guest {
 
     protected Guest() {}
 
-    public Guest(String guestFirstName, String guestLastName, String guestAdress, String guestZipcode, String guestCity, String guestCountry, String guestPhonenumber, String guestEmailAdress) {
-        this.guestFirstName = guestFirstName;
-        this.guestLastName = guestLastName;
-        this.guestAdress = guestAdress;
-        this.guestZipcode = guestZipcode;
-        this.guestCity = guestCity;
-        this.guestCountry = guestCountry;
-        this.guestPhonenumber = guestPhonenumber;
-        this.guestEmailAdress = guestEmailAdress;
-    }
-
     public void setGuestFirstName(String guestFirstName) {
         this.guestFirstName = guestFirstName;
     }

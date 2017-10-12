@@ -32,7 +32,7 @@ public class GuestControllerTest {
         //Check of de repository 1x wordt aangeroepen
         //Check of je iets terugkrijgt, zonder manipulaties
 
-        when(repository.findAll()).thenReturn(new ArrayList<Guest>());
+        when(repository.findAll()).thenReturn(new ArrayList<>());
         Iterable<Guest> result = guestController.getAll();
         Assert.assertEquals(0, result.spliterator().getExactSizeIfKnown());
     }

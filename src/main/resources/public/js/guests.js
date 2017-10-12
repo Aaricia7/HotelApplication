@@ -31,10 +31,10 @@ function getAll() {
 
 $("#btnAddGuest").click(function (e) {
     e.preventDefault();
+    $("#txtFail").text("");
     var obj = getObject();
-    console.log($("#gastToevoegen").validate());
     if ($("#gastToevoegen").validate()) {
-            addGuest(obj);
+       addGuest(obj);
     }
 });
 
@@ -43,16 +43,23 @@ function addGuest(obj) {
             url: "/api/guests/",
             type: "POST",
             data: JSON.stringify(obj),
-            contentType: "application/json; charset=utf-8"
-        }).done(function () {
-            $("#guestModal").modal("toggle");
-            $("#guestModal input").val("");
-            getAll();
-        });
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                $("#guestModal").modal("toggle");
+                $("#guestModal input").val("");
+                getAll();
+                $("#txtFail").text("");
+            },
+            error: function(err) {
+                $("#txtFail").text("Vul alle velden correct in.");
+            }
+     });
 }
+
 
 $("#btnUpdateGuest").click( function (e) {
     e.preventDefault();
+    $("#txtFail").text("");
     var obj = getObject();
 
     if ($("#gastToevoegen").validate()) {
@@ -61,19 +68,21 @@ $("#btnUpdateGuest").click( function (e) {
 })
 
 function updateGuest(obj) {
-
      $.ajax({
         url: "/api/guests/",
         method:"PUT",
         data: JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8"
-        }).done(function () {
-        $("#guestModal").modal("toggle");
-        $("#guestModal input").val("");
-        getAll();
-    })
-
-
+        contentType: "application/json; charset=utf-8",
+        success: function(result) {
+            $("#guestModal").modal("toggle");
+            $("#guestModal input").val("");
+            getAll();
+            $("#txtFail").text("");
+        },
+        error: function(err) {
+            $("#txtFail").text("Vul alle velden correct in.");
+        }
+    });
 }
 
 function del(id) {
@@ -93,14 +102,6 @@ function del(id) {
         }
     });
 }
-
-
-success: function(result) {
-            $("#fluffyness").text(result.name);
-        },
-        error: function(err) {
-            console.log(err);
-        }
 
 function edit(id) {
     $("#btnAddGuest").hide();
@@ -138,17 +139,6 @@ function getObject() {
 $(document).ready(function(){
     $('#gastToevoegen').validate();
 });
-
-
-//    $("gastToevoegen").validate({
-//    rules:{
-//    guestFirstName: "required",
-//    guestLastName: "required",
-//    required: true
-//    minLength: 2
-//    }
-//    }
-
 
 
 

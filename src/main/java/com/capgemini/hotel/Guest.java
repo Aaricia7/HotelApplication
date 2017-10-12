@@ -1,6 +1,13 @@
 package com.capgemini.hotel;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Guest {
@@ -8,13 +15,25 @@ public class Guest {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long guestID;
+    @NotEmpty
+    @Length(max = 25, min = 1, message = "THUGLIFE")
     private String guestFirstName;
+    @Length(max = 25, min = 1, message = "THUGLIFE")
     private String guestLastName;
+    @NotEmpty
     private String guestAdress;
+    @NotEmpty
     private String guestZipcode;
+    @NotEmpty
     private String guestCity;
+    @NotEmpty
     private String guestCountry;
+    @Valid
+    @Pattern(regexp="\\d+", message = "Bitch vul in")
     private String guestPhonenumber;
+    @Valid
+    @Email (message = "THUGLIFE2")
+    @Length(min = 1, message = "THUGLIFE")
     private String guestEmailAdress;
     @ManyToOne
     private Booking booking;

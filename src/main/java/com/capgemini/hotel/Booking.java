@@ -16,9 +16,6 @@ public class Booking {
     private long guestID;
     private long roomID;
     private int peopleBooking;
-    private String firstName;
-    private String lastName;
-    private String roomNumber;
     private EBookingCheckIn checkIn;
 
     @ManyToOne

@@ -1,7 +1,10 @@
 package com.capgemini.controller;
 
+import com.capgemini.hotel.Booking;
 import com.capgemini.hotel.Guest;
 import com.capgemini.repository.GuestRepository;
+import com.capgemini.repository.Validators;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -31,18 +34,12 @@ public class GuestController {
 
     @RequestMapping(value="", method=RequestMethod.POST)
     public void add(@Valid @RequestBody Guest guest) {
-     // if( Validators.emailMatcher(guest.getGuestEmailAdress()) &&
-     //   Validators.phoneMatcher(guest.getGuestPhonenumber())) {
           guestRepository.save(guest);
-     // }
     }
 
     @RequestMapping(value="{id}/", method= RequestMethod.DELETE)
     public void del(@PathVariable long id) {
-        List anyBookings = bookingRepository.findByGuestID(id);
-        if(anyBookings.size()==0) {
-            guestRepository.delete(id);
-        }
+        guestRepository.delete(id);
     }
 
     @RequestMapping(value="{id}/", method= RequestMethod.GET)
@@ -67,4 +64,15 @@ public class GuestController {
         }
         return errors;
     }
+
+    //ConstraintViolationException
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public String processConstraintError(ConstraintViolationException ex) {
+        return "Deze gast heeft nog een boeking openstaan.";
+    }
+
+
 }

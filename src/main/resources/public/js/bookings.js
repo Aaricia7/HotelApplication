@@ -34,7 +34,6 @@ function getAll() {
 
 $("#btnAddBooking").click(function (e) {
     var obj = getObject();
-    console.log(obj);
     $.ajax({
         url: "/api/bookings/",
         type: "POST",

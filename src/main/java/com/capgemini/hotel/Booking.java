@@ -113,6 +113,14 @@ public class Booking {
     public void setGuestPaid(boolean guestPaid) {
         this.guestPaid = guestPaid;
     }
+
+    public int getPeopleBooking() {
+        return peopleBooking;
+    }
+
+    public void setPeopleBooking(int peopleBooking) {
+        this.peopleBooking = peopleBooking;
+    }
 }
 
 

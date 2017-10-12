@@ -28,37 +28,56 @@ function getAll() {
 }
 
 $("#btnAddGuest").click(function (e) {
+
+    e.preventDefault();
+
     var obj = getObject();
-    if (validation()) {
-            $.ajax({
-                url: "/api/guests/",
-                type: "POST",
-                data: JSON.stringify(obj),
-                contentType: "application/json; charset=utf-8"
-            }).done(function () {
-                $("#guestModal").modal("toggle");
-                $("#guestModal input").val("");
-                getAll();
-            });
-        }
+
+    if ($("#gastToevoegen").validate()) {
+            addGuest(obj);
+            }
 });
 
-$("#btnUpdateGuest").click( function (e) {
-    e.preventDefault();
-    var obj = getObject();
-    if (validation()) {
-        $.ajax({
+function addGuest(obj) {
+
+     $.ajax({
             url: "/api/guests/",
-            method:"PUT",
+            type: "POST",
             data: JSON.stringify(obj),
             contentType: "application/json; charset=utf-8"
-            }).done(function () {
+        }).done(function () {
             $("#guestModal").modal("toggle");
             $("#guestModal input").val("");
             getAll();
-        })
-     }
+        });
+}
+
+$("#btnUpdateGuest").click( function (e) {
+
+    e.preventDefault();
+
+    var obj = getObject();
+
+    if ($("#gastToevoegen").validate()) {
+            updateGuest(obj);
+            }
 })
+
+function updateGuest(obj) {
+
+     $.ajax({
+        url: "/api/guests/",
+        method:"PUT",
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8"
+        }).done(function () {
+        $("#guestModal").modal("toggle");
+        $("#guestModal input").val("");
+        getAll();
+    })
+
+
+}
 
 function del(id) {
     $.confirm({
@@ -106,9 +125,24 @@ function getObject() {
     obj.guestEmailAdress = $("#emailAddress").val();
     obj.guestID = $("#id").val();
     return obj;
-}
 
-function validation() {
- $("#gastToevoegen").validate();
 }
+$(document).ready(function(){
+$('#gastToevoegen').validate();
+
+});
+
+
+//    $("gastToevoegen").validate({
+//    rules:{
+//    guestFirstName: "required",
+//    guestLastName: "required",
+//    required: true
+//    minLength: 2
+//    }
+//    }
+
+
+
+
 

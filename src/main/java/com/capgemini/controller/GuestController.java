@@ -21,10 +21,10 @@ public class GuestController {
 
     @RequestMapping(value="", method=RequestMethod.POST)
     public void add(@RequestBody Guest guest) {
-      if( Validators.emailMatcher(guest.getGuestEmailAdress()) &&
-        Validators.phoneMatcher(guest.getGuestPhonenumber())) {
+     // if( Validators.emailMatcher(guest.getGuestEmailAdress()) &&
+     //   Validators.phoneMatcher(guest.getGuestPhonenumber())) {
           guestRepository.save(guest);
-      }
+     // }
     }
 
     @RequestMapping(value="{id}/", method= RequestMethod.DELETE)

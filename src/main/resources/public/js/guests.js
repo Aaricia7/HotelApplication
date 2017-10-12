@@ -82,16 +82,25 @@ function del(id) {
         content: 'Weet u zeker dat u deze gast wilt verwijderen?',
         buttons: {
             confirm: function () {
-                $.ajax({url: "/api/guests/"+id+"/", type: "DELETE"}).done( function() {
+                $.ajax({url: "/api/guests/"+id+"/", type: "DELETE"}).success( function() {
                     getAll();
+                    $.alert('Gast is verwijderd');
                 })
-                $.alert('Gast is verwijderd');
+
             },
             cancel: function () {
             }
         }
     });
 }
+
+
+success: function(result) {
+            $("#fluffyness").text(result.name);
+        },
+        error: function(err) {
+            console.log(err);
+        }
 
 function edit(id) {
     $("#btnAddGuest").hide();

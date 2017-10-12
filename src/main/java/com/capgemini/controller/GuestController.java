@@ -1,11 +1,14 @@
 package com.capgemini.controller;
 
+import com.capgemini.hotel.Booking;
 import com.capgemini.hotel.Guest;
 import com.capgemini.repository.GuestRepository;
 import com.capgemini.repository.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
+import com.capgemini.repository.BookingRepository;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/guests/")
@@ -13,6 +16,10 @@ public class GuestController {
 
     @Autowired
     GuestRepository guestRepository;
+
+    @Autowired
+    BookingRepository bookingRepository;
+
 
     @RequestMapping(value="",method = RequestMethod.GET)
     public Iterable<Guest> getAll() {
@@ -29,7 +36,10 @@ public class GuestController {
 
     @RequestMapping(value="{id}/", method= RequestMethod.DELETE)
     public void del(@PathVariable long id) {
-        guestRepository.delete(id);
+        List anyBookings = bookingRepository.findByGuestID(id);
+        if(anyBookings.size()==0) {
+            guestRepository.delete(id);
+        }
     }
 
     @RequestMapping(value="{id}/", method= RequestMethod.GET)

@@ -1,9 +1,6 @@
 package com.capgemini.hotel;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Guest {
@@ -19,8 +16,18 @@ public class Guest {
     private String guestCountry;
     private String guestPhonenumber;
     private String guestEmailAdress;
+    @ManyToOne
+    private Booking booking;
 
     protected Guest() {}
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
 
     public void setGuestFirstName(String guestFirstName) {
         this.guestFirstName = guestFirstName;

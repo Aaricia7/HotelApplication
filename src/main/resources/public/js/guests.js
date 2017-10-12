@@ -1,5 +1,4 @@
 var table = $("#table").DataTable();
-
 $("#linkAddGuest").click(function (e) {
     e.preventDefault();
     $("#guestModal").modal("toggle");
@@ -31,23 +30,39 @@ function getAll() {
 }
 
 $("#btnAddGuest").click(function (e) {
+    e.preventDefault();
     var obj = getObject();
-    $.ajax({
-        url: "/api/guests/",
-        type: "POST",
-        data: JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8"
-    }).done(function () {
-        $("#guestModal").modal("toggle");
-        $("#guestModal input").val("");
-        getAll();
-    });
+    console.log($("#gastToevoegen").validate());
+    if ($("#gastToevoegen").validate()) {
+            addGuest(obj);
+    }
 });
+
+function addGuest(obj) {
+     $.ajax({
+            url: "/api/guests/",
+            type: "POST",
+            data: JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8"
+        }).done(function () {
+            $("#guestModal").modal("toggle");
+            $("#guestModal input").val("");
+            getAll();
+        });
+}
 
 $("#btnUpdateGuest").click( function (e) {
     e.preventDefault();
     var obj = getObject();
-    $.ajax({
+
+    if ($("#gastToevoegen").validate()) {
+            updateGuest(obj);
+    }
+})
+
+function updateGuest(obj) {
+
+     $.ajax({
         url: "/api/guests/",
         method:"PUT",
         data: JSON.stringify(obj),
@@ -57,7 +72,9 @@ $("#btnUpdateGuest").click( function (e) {
         $("#guestModal input").val("");
         getAll();
     })
-})
+
+
+}
 
 function del(id) {
     $.confirm({
@@ -107,5 +124,23 @@ function getObject() {
     obj.guestEmailAdress = $("#emailAddress").val();
     obj.guestID = $("#id").val();
     return obj;
+
 }
+$(document).ready(function(){
+    $('#gastToevoegen').validate();
+});
+
+
+//    $("gastToevoegen").validate({
+//    rules:{
+//    guestFirstName: "required",
+//    guestLastName: "required",
+//    required: true
+//    minLength: 2
+//    }
+//    }
+
+
+
+
 

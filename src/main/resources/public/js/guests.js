@@ -1,12 +1,28 @@
 var table = $("#table").DataTable();
 $("#linkAddGuest").click(function (e) {
     e.preventDefault();
+    $("#txtFail").text("");
     $("#guestModal").modal("toggle");
     $("#btnUpdateGuest").hide();
     $("#btnAddGuest").show();
     $("#titleAddGuest").show();
     $("#titleChangeGuest").hide();
 });
+
+
+$("#btnAddGuest").click(function (e) {
+    e.preventDefault();
+    $("#txtFail").text("");
+    var obj = getObject();
+    addGuest(obj);
+});
+
+$("#btnUpdateGuest").click( function (e) {
+    e.preventDefault();
+    $("#txtFail").text("");
+    var obj = getObject();
+    updateGuest(obj);
+})
 
 getAll();
 
@@ -29,14 +45,6 @@ function getAll() {
     });
 }
 
-$("#btnAddGuest").click(function (e) {
-    e.preventDefault();
-    $("#txtFail").text("");
-    var obj = getObject();
-    if ($("#gastToevoegen").validate()) {
-       addGuest(obj);
-    }
-});
 
 function addGuest(obj) {
      $.ajax({
@@ -50,22 +58,17 @@ function addGuest(obj) {
                 getAll();
                 $("#txtFail").text("");
             },
-            error: function(err) {
-                $("#txtFail").text("Vul alle velden correct in.");
+            error: function(jqXHR, status, thrownError) {
+
+                $("#txtFail").html("Vul alle velden correct in: <br>");
+                 var responseText = jQuery.parseJSON(jqXHR.responseText);
+                 for (var i=0;i<responseText.length;i++) {
+
+                     $("#txtFail").append(responseText[i]+"<br>");
+                 }
             }
      });
 }
-
-
-$("#btnUpdateGuest").click( function (e) {
-    e.preventDefault();
-    $("#txtFail").text("");
-    var obj = getObject();
-
-    if ($("#gastToevoegen").validate()) {
-            updateGuest(obj);
-    }
-})
 
 function updateGuest(obj) {
      $.ajax({
@@ -79,10 +82,16 @@ function updateGuest(obj) {
             getAll();
             $("#txtFail").text("");
         },
-        error: function(err) {
-            $("#txtFail").text("Vul alle velden correct in.");
-        }
-    });
+            error: function(jqXHR, status, thrownError) {
+
+                $("#txtFail").html("Vul alle velden correct in: <br>");
+                 var responseText = jQuery.parseJSON(jqXHR.responseText);
+                 for (var i=0;i<responseText.length;i++) {
+
+                     $("#txtFail").append(responseText[i]+"<br>");
+                 }
+            }
+     });
 }
 
 function del(id) {
@@ -95,7 +104,6 @@ function del(id) {
                     getAll();
                     $.alert('Gast is verwijderd');
                 })
-
             },
             cancel: function () {
             }
@@ -134,11 +142,8 @@ function getObject() {
     obj.guestEmailAdress = $("#emailAddress").val();
     obj.guestID = $("#id").val();
     return obj;
-
 }
-$(document).ready(function(){
-    $('#gastToevoegen').validate();
-});
+
 
 
 

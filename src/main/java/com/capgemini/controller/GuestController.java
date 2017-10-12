@@ -1,9 +1,7 @@
 package com.capgemini.controller;
 
-import com.capgemini.hotel.Booking;
 import com.capgemini.hotel.Guest;
 import com.capgemini.repository.GuestRepository;
-import com.capgemini.repository.Validators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -69,6 +67,4 @@ public class GuestController {
         }
         return errors;
     }
-
-
 }

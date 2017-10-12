@@ -15,26 +15,33 @@ public class Guest {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long guestID;
-    @NotEmpty
-    @Length(max = 25, min = 1, message = "THUGLIFE")
+
+    @Length(max = 25, min = 1, message = "Ongeldige voornaam.")
     private String guestFirstName;
-    @Length(max = 25, min = 1, message = "THUGLIFE")
+
+    @Length(max = 25, min = 1, message = "Ongeldige achternaam.")
     private String guestLastName;
-    @NotEmpty
+
+    @NotEmpty(message="Vul een adres in.")
     private String guestAdress;
-    @NotEmpty
+
+    @NotEmpty(message="Vul een postcode in.")
     private String guestZipcode;
-    @NotEmpty
+
+    @NotEmpty(message="Vul een woonplaats in.")
     private String guestCity;
-    @NotEmpty
+
+    @NotEmpty(message="Vul een land in.")
     private String guestCountry;
+
     @Valid
-    @Pattern(regexp="\\d+", message = "Bitch vul in")
+    @Pattern(regexp="\\d+", message = "Ongeldig telefoonnummer.")
     private String guestPhonenumber;
+
     @Valid
-    @Email (message = "THUGLIFE2")
-    @Length(min = 1, message = "THUGLIFE")
+    @Email (message = "Ongeldig e-mailadres.")
     private String guestEmailAdress;
+
     @ManyToOne
     private Booking booking;
 

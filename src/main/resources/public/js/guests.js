@@ -137,16 +137,5 @@ $('#gastToevoegen').validate();
 });
 
 
-//    $("gastToevoegen").validate({
-//    rules:{
-//    guestFirstName: "required",
-//    guestLastName: "required",
-//    required: true
-//    minLength: 2
-//    }
-//    }
-
-
-
 
 

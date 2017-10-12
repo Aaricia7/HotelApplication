@@ -1,4 +1,5 @@
 var table = $("#table").DataTable();
+
 $("#linkAddGuest").click(function (e) {
     e.preventDefault();
     $("#txtFail").text("");

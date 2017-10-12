@@ -2,6 +2,7 @@ var table = $("#table").DataTable();
 
 $("#linkAddRoom").click(function (e) {
     e.preventDefault();
+    $("#txtFail").text("");
     $("#roomModal").modal("toggle");
     $("#btnUpdateRoom").hide();
     $("#btnAddRoom").show();
@@ -36,6 +37,7 @@ $("#btnClose").click(function() {
 $("#btnAddRoom").click( function (e) {
     e.preventDefault();
     var obj = getObject();
+    $("#txtFail").text("");
     $.ajax({
         url: "/api/rooms/",
         method:"POST",
@@ -45,24 +47,42 @@ $("#btnAddRoom").click( function (e) {
         $("#roomModal").modal("toggle");
         $("#roomModal input").val("");
         getAll();
-    })
+    }).fail(function (jqXHR, status, thrownError) {
+
+      $("#txtFail").html("Vul alle velden correct in: <br>");
+       var responseText = jQuery.parseJSON(jqXHR.responseText);
+       for (var i=0;i<responseText.length;i++) {
+
+           $("#txtFail").append(responseText[i]+"<br>");
+       }
+    });
 })
 
 $("#btnUpdateRoom").click( function (e) {
     e.preventDefault();
     var obj = getObject();
+    $("#txtFail").text("");
     $.ajax({
         url: "/api/rooms/",
         method:"PUT",
         data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8"
-        }).done(function () {
+        })
+        .done(function () {
         $("#roomModal").modal("toggle");
         $("#roomModal input").val("");
         getAll();
-    })
-})
+     }).fail(function (jqXHR, status, thrownError) {
 
+         $("#txtFail").html("Vul alle velden correct in: <br>");
+          var responseText = jQuery.parseJSON(jqXHR.responseText);
+          for (var i=0;i<responseText.length;i++) {
+
+              $("#txtFail").append(responseText[i]+"<br>");
+          }
+    });
+
+})
 function del(id) {
     $.confirm({
         title: 'Verwijdering bevestigen',
@@ -70,14 +90,19 @@ function del(id) {
         buttons: {
             confirm: function () {
                  $.ajax({url: "/api/rooms/"+id+"/", type: "DELETE"}).done( function() {
-                 getAll();
-                 })
-                $.alert('Kamer is verwijderd');
+                 $.alert('Kamer is verwijderd');
+                 }).fail( function(err) {
+                    $.alert({
+                         title: 'Fout',
+                         content: err.responseText,
+                     });
+                 });
             },
             cancel: function () {
             }
         }
     });
+    getAll();
 }
 
 function edit(id) {

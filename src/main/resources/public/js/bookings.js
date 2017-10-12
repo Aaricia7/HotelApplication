@@ -2,7 +2,7 @@ var table = $("#table").DataTable();
 
 $("#linkAddBooking").click(function (e) {
     e.preventDefault();
-    getOptionsRoom();
+    getOptions();
     $("#bookingModal").modal("toggle");
     $("#btnUpdateBooking").hide();
     $("#btnAddBooking").show();
@@ -100,7 +100,7 @@ function edit(id) {
     })
 }
 
-function getOptionsRoom(){
+function getOptions(){
     $.get("/api/guests/", function (result) {
         table.clear();
         document.getElementById("guestID").options.length = 0;
@@ -117,8 +117,8 @@ function getOptionsRoom(){
         for (var i = 0; i < result.length; i++) {
            $("#roomID").append("<option value="+result[i].roomID+">"
            +result[i].roomNumber+ ", "
-           +result[i].roomSize+ ", "
-           +result[i].roomType+"</option>");
+           +result[i].roomSize.toLowerCase().replace(/\_/g, ' ')+ ", "
+           +result[i].roomType.toLowerCase()+"</option>");
            }
         }
     );

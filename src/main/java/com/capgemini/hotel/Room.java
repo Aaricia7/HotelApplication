@@ -1,9 +1,12 @@
 package com.capgemini.hotel;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -14,8 +17,10 @@ public class Room {
     private long roomID;
     private ERoomSize roomSize;
     private ERoomType roomType;
+    @NotNull(message = "Geef aan vanaf wanneer kamer beschikbaar is voor verhuur.")
     private LocalDate dateReady;
     private boolean roomAvailable;
+    @NotEmpty(message = "Geef een kamernummer.")
     private String roomNumber;
 
     protected Room() {}

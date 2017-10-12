@@ -54,11 +54,9 @@ function getObject() {
     obj.startDate = $("#startDate").val();
     obj.stopDate = $("#stopDate").val();
     obj.peopleBooking = $("#peopleBooking").val();
-    obj.guestPaid = ($("#paid").val()=="Betaald") ? true : false;
-    obj.checkIn = $("#checkIn").val();
+    obj.guestPaid = $("#paid").val();obj.checkIn = $("#checkIn").val();
     obj.bookID = $("#id").val();
-    return obj;
-}
+    return obj;}
 
 function del(id) {
     $.confirm({
@@ -79,7 +77,7 @@ function del(id) {
 }
 
 function edit(id) {
-    getOptionsRoom();
+    getOptions();
     $("#btnAddBooking").hide();
     $("#btnUpdateBooking").show();
     $("#titleAddBooking").hide();
@@ -102,7 +100,6 @@ function edit(id) {
 
 function getOptions(){
     $.get("/api/guests/", function (result) {
-        table.clear();
         document.getElementById("guestID").options.length = 0;
         for (var i = 0; i< result.length; i++) {
             $("#guestID").append("<option value="+result[i].guestID+">"
@@ -111,8 +108,8 @@ function getOptions(){
             +result[i].guestAdress+", "
             +result[i].guestCity+"</option>");
     }})
+
     $.get("/api/rooms/", function (result) {
-        table.clear();
         document.getElementById("roomID").options.length = 0;
         for (var i = 0; i < result.length; i++) {
            $("#roomID").append("<option value="+result[i].roomID+">"

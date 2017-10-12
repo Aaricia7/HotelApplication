@@ -45,8 +45,11 @@ public class BookingController {
 
     @RequestMapping(value="", method=RequestMethod.PUT)
     public void save(@RequestBody Booking booking) {
-        bookingRepository.save(booking);
-    }
+        Guest guest = guestRepository.findOne(booking.getGuestID());
+        Room room = roomRepository.findOne(booking.getRoomID());
+        booking.setGuest(guest);
+        booking.setRoom(room);
+        bookingRepository.save(booking);}
 
 
 }

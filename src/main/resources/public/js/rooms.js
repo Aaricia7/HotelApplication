@@ -127,7 +127,6 @@ function getObject() {
     var obj = {};
     obj.roomSize = $("#roomSize").val();
     obj.roomType =  $("#roomType").val();
-    console.debug(obj.roomSize);
     obj.dateReady = $("#dateReady").val();
     obj.roomAvailable = $("#roomAvailable").val();;
     obj.roomNumber = $("#roomNumber").val();

@@ -97,7 +97,10 @@ function del(id) {
                         $.alert('Gast is verwijderd');
                     },
                     error: function(err) {
-
+                        $.alert({
+                            title: 'Fout',
+                            content: err.responseText,
+                        });
                     }
                 });
             },
